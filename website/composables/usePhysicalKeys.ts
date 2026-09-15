@@ -19,6 +19,8 @@ for (const c of 'ABCDEFGHIJKLMNOPQRSTUVWXYZ') codeToKey[`Key${c}`] = c.toLowerCa
 export function usePhysicalKeys(target: Ref<HTMLElement | null>) {
   const held = ref<ReadonlySet<string>>(new Set())
   const last = ref<string | null>(null)
+  /** Increments on every new key press (not auto-repeat), so repeated keys can be counted. */
+  const presses = ref(0)
   const visible = ref(false)
   const timers = new Map<string, ReturnType<typeof setTimeout>>()
 
@@ -59,6 +61,7 @@ export function usePhysicalKeys(target: Ref<HTMLElement | null>) {
     if (id === 'space' && document.activeElement === document.body) event.preventDefault()
     set(id, true)
     last.value = id
+    if (!event.repeat) presses.value++
     // macOS doesn't send keyup for keys pressed while ⌘ is held, and Caps Lock only reports toggles,
     // so every key also releases itself.
     clearTimeout(timers.get(id))
@@ -75,5 +78,5 @@ export function usePhysicalKeys(target: Ref<HTMLElement | null>) {
   useEventListener('blur', clear)
   onBeforeUnmount(clear)
 
-  return { held, last, active: visible }
+  return { held, last, presses, active: visible }
 }

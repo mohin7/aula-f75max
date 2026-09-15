@@ -47,6 +47,12 @@ const lightStyles = computed(() =>
 const highlight = computed(() => new Set(props.highlightIds))
 const hoveredKey = computed(() => keys.find((k) => k.id === hoveredId.value) ?? null)
 
+/** Accessible name that also contains the visible legend (e.g. "PgUp, Page Up"). */
+function keyName(key: KeyDef) {
+  const legend = key.label
+  return legend && !key.usage.toLowerCase().includes(legend.toLowerCase()) ? `${legend}, ${key.usage}` : key.usage
+}
+
 const pct = (value: number, total: number) => `${(value / total) * 100}%`
 
 function keyBox(key: { x: number; y: number; w: number }) {
@@ -149,7 +155,7 @@ const date = computed(() => now.value?.toLocaleDateString([], { weekday: 'short'
           :class="{ 'cap--selected': selectedId === key.id, 'cap--hl': highlight.has(key.id), 'cap--interactive': interactive, 'cap--lit': litIds.has(key.id) || activeIds.has(key.id), 'cap--down': activeIds.has(key.id) }"
           :style="{ ...keyBox(key), ...lightStyles[key.id] }"
           :tabindex="interactive ? (focusId === key.id ? 0 : -1) : undefined"
-          :aria-label="interactive ? key.usage : undefined"
+          :aria-label="interactive ? keyName(key) : undefined"
           :aria-pressed="interactive ? selectedId === key.id : undefined"
           :aria-hidden="interactive ? undefined : 'true'"
           @pointerenter="interactive && (hoveredId = key.id)"
