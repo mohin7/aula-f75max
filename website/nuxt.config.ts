@@ -1,14 +1,15 @@
-import { existsSync, readFileSync, statSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import tailwindcss from '@tailwindcss/vite'
 
 // GitHub Pages serves the site from /aula-f75max/. Set NUXT_APP_BASE_URL when building for it.
 const baseURL = process.env.NUXT_APP_BASE_URL || '/'
 
-// The DMG is served by the website itself (copied from ../dist by scripts/sync-dmg.mjs).
-// Its version and size are read from the real files, so the download details never go stale.
-const dmgPath = 'public/downloads/AULA-Studio.dmg'
-const appVersion = readFileSync('../Support/Info.plist', 'utf8').match(/<key>CFBundleShortVersionString<\/key>\s*<string>([^<]+)<\/string>/)?.[1] ?? ''
-const downloadSize = existsSync(dmgPath) ? `${(statSync(dmgPath).size / 1e6).toFixed(1)} MB` : ''
+// The DMG is served by the website itself (copied from ../dist by scripts/sync-dmg.mjs, which also
+// writes data/release.json). Only files inside website/ are read, so the site builds on its own.
+const releasePath = new URL('./data/release.json', import.meta.url)
+const release: { version?: string; bytes?: number } = existsSync(releasePath) ? JSON.parse(readFileSync(releasePath, 'utf8')) : {}
+const appVersion = release.version ?? ''
+const downloadSize = release.bytes ? `${(release.bytes / 1e6).toFixed(1)} MB` : ''
 
 // Everything that changes between releases or deployments lives in runtimeConfig.public,
 // so it can be overridden with NUXT_PUBLIC_* environment variables at build time.
@@ -52,7 +53,7 @@ export default defineNuxtConfig({
       /** The DMG every download button fetches. A path is served from this site; a full URL works too. */
       downloadUrl: '/downloads/AULA-Studio.dmg',
       githubUrl: 'https://github.com/mohin7/aula-f75max',
-      /** Shown under the download buttons. Read from Support/Info.plist and the DMG at build time. */
+      /** Shown under the download buttons. From data/release.json (written by scripts/sync-dmg.mjs). */
       appVersion,
       downloadSize,
     },
