@@ -6,7 +6,7 @@ const links = useSiteLinks()
 const columns = [
   { title: 'Product', items: [
     { label: 'Features', href: '#features' },
-    { label: 'Coming soon', href: '#coming-soon' },
+    { label: 'Coming soon', href: '#keymap' },
     { label: 'FAQ', href: '#faq' },
     { label: 'Download', href: '#download' },
   ] },

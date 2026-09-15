@@ -64,9 +64,15 @@ useHead({
     <main id="main">
       <HeroSection />
       <FeatureShowcase />
-      <ComingSoonSection />
+      <KeymapStudio />
+      <MacroStudio />
+      <ProfileStudio />
+      <KnobSection />
       <PerformanceSection />
+      <HowItWorks />
       <DownloadSection />
+      <ContributionSection />
+      <DocumentationSection />
       <FAQSection />
     </main>
     <AppFooter />

@@ -27,10 +27,10 @@ The `Website` GitHub Actions workflow deploys to GitHub Pages on every push to `
 The download buttons serve the DMG from this site, at `/downloads/AULA-Studio.dmg`.
 
 1. Run `make dmg` in the repository root. It writes `dist/AULA-Studio.dmg`.
-2. Run `pnpm generate` (or `pnpm dev`). It copies the DMG into `public/downloads/`.
-3. Commit `website/public/downloads/AULA-Studio.dmg` and push. GitHub Pages then serves the new file.
+2. Run `pnpm generate` (or `pnpm dev`). It copies the DMG into `public/downloads/` and writes its version and size to `data/release.json`.
+3. Commit `public/downloads/AULA-Studio.dmg` and `data/release.json`, then push.
 
-The version and file size under the buttons are read from `Support/Info.plist` and the DMG, so there's nothing to update by hand.
+The version comes from `Support/Info.plist` and the size from the DMG, so there's nothing to update by hand. The build only reads files inside `website/`, so it also works on hosts that build this folder on its own, such as Cloudflare Pages (build command `pnpm generate`, output directory `dist`).
 
 ## Configuration
 
@@ -48,12 +48,13 @@ Everything that changes between releases lives in `runtimeConfig.public` in `nux
 data/          Content and facts: features, FAQ, app labels, keyboard layout, lighting colors
 composables/   Motion, keyboard lighting, live key mirroring, app window state, links
 components/
-  ui/          Buttons, badges, choice pills, accordion, download button
-  keyboard/    Keyboard visual with CSS-only lighting
+  ui/          Buttons, badges, headings, choice pills, accordion, download button
+  keyboard/    Keyboard visual with CSS-only lighting, key inspector, knob
   app/         Interactive recreation of the AULA Studio window and its pages
   layout/      Header, footer, logo
   hero/        Hero with the live keyboard
-  sections/    Features (app window), coming soon, built for Mac, download, FAQ
+  sections/    Features (app window), key mapping, macros, profiles, knob, built for Mac,
+               how it works, download, contribute, documentation, FAQ
 plugins/       v-reveal (one shared IntersectionObserver)
 scripts/       sync-dmg.mjs copies ../dist/AULA-Studio.dmg into public/downloads
 server/routes/ sitemap.xml and robots.txt (prerendered)
@@ -64,6 +65,6 @@ server/routes/ sitemap.xml and robots.txt (prerendered)
 This site describes a real app, so keep it true:
 
 - A feature is marked `available` in `data/features.ts` only if the shipping app has it.
-- Key mapping, macros, profiles and custom knob actions are labeled **Coming soon**.
+- Key mapping, macros, profiles and custom knob actions are labeled **Coming soon · Preview**, and their demos say they don't change a real keyboard.
 - The recreated app window (`components/app/`) must use the app's real labels and options, and stays labeled as a recreation that doesn't connect to a keyboard.
 - Don't add performance numbers, download counts, GitHub stats, testimonials or compatibility claims that haven't been verified.

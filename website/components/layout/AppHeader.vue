@@ -10,7 +10,7 @@ onKeyStroke('Escape', () => (open.value = false))
 
 const nav = [
   { label: 'Features', href: '#features' },
-  { label: 'Coming soon', href: '#coming-soon' },
+  { label: 'Coming soon', href: '#keymap' },
   { label: 'FAQ', href: '#faq' },
   { label: 'Download', href: '#download' },
 ]
