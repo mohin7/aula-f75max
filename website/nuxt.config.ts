@@ -49,7 +49,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       /** Absolute site URL, used for canonical links, Open Graph and the sitemap. */
-      siteUrl: 'https://mohin7.github.io/aula-f75max',
+      siteUrl: 'https://aula.uxatom.com',
       /** The DMG every download button fetches. A path is served from this site; a full URL works too. */
       downloadUrl: '/downloads/AULA-Studio.dmg',
       githubUrl: 'https://github.com/mohin7/aula-f75max',

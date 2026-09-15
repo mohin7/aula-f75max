@@ -20,7 +20,16 @@ NUXT_APP_BASE_URL=/aula-f75max/ pnpm generate   # output: .output/public
 
 `NUXT_APP_BASE_URL` sets the path the site is served from. Leave it unset when the site is served from a domain root.
 
-The `Website` GitHub Actions workflow deploys to GitHub Pages on every push to `main` that changes `website/`. To use it, enable Pages with **Source: GitHub Actions** in the repository settings.
+## Deploy
+
+The site is live at **https://aula.uxatom.com**, served by the Cloudflare Worker `aula` (static assets only, configured in `wrangler.jsonc`):
+
+```sh
+pnpm generate
+npx wrangler deploy
+```
+
+The `Website` GitHub Actions workflow can also publish to GitHub Pages under `/aula-f75max/`. To use it, enable Pages with **Source: GitHub Actions** in the repository settings.
 
 ## Releasing a new version
 

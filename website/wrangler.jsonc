@@ -1,0 +1,14 @@
+// Cloudflare Workers static-assets deployment for the website.
+// Build with `pnpm generate`, then deploy with `npx wrangler deploy` from this folder.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "aula",
+  "compatibility_date": "2026-09-01",
+  "workers_dev": false,
+  "routes": [{ "pattern": "aula.uxatom.com", "custom_domain": true }],
+  "assets": {
+    "directory": "./.output/public",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}

@@ -13,3 +13,4 @@ website/.nuxt/
 website/.output/
 website/.data/
 website/dist
+website/.wrangler/
