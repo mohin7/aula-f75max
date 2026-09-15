@@ -71,6 +71,10 @@ if [[ -n "$NOTARY_PROFILE" ]]; then
   xcrun stapler staple "$DMG"
 fi
 
+# A copy with a fixed name, which the website serves as its download (website/scripts/sync-dmg.mjs).
+LATEST="$DIST/AULA-Studio.dmg"
+cp "$DMG" "$LATEST"
+
 step "Done"
-ls -lh "$DMG"
+ls -lh "$DMG" "$LATEST"
 shasum -a 256 "$DMG"

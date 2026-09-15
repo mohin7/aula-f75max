@@ -6,3 +6,10 @@ xcuserdata/
 .DS_Store
 dist/
 .claude/
+
+# Website
+website/node_modules/
+website/.nuxt/
+website/.output/
+website/.data/
+website/dist

@@ -1,0 +1,28 @@
+{
+  "name": "aula-studio-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/sync-dmg.mjs && nuxt dev",
+    "build": "node scripts/sync-dmg.mjs && nuxt build",
+    "generate": "node scripts/sync-dmg.mjs && nuxt generate",
+    "preview": "nuxt preview",
+    "typecheck": "nuxt typecheck",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxt/image": "^1.11.0",
+    "@vueuse/nuxt": "^14.4.0",
+    "nuxt": "^3.21.11",
+    "vue": "^3.5.0",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^22.20.2",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.0",
+    "vue-tsc": "^3.0.0"
+  },
+  "packageManager": "pnpm@11.21.0"
+}
