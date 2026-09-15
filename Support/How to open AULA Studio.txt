@@ -1,0 +1,24 @@
+AULA Studio: installing
+======================
+
+1. Drag "AULA Studio" onto the Applications folder in this window.
+
+2. Open Applications and double-click AULA Studio.
+   macOS says it can't verify the developer, because this build isn't notarized by Apple yet.
+   Click "Done" (not "Move to Trash").
+
+3. Open System Settings → Privacy & Security, scroll down, and click "Open Anyway"
+   next to "AULA Studio was blocked". Confirm with your password.
+   You only need to do this once.
+
+   Or, in Terminal:
+       xattr -dr com.apple.quarantine "/Applications/AULA Studio.app"
+
+4. When the app asks, allow:
+   • Bluetooth: battery level and firmware version
+   • Input Monitoring: mirrors your key presses on screen (nothing is recorded)
+
+Requirements: macOS 15 or later, Apple silicon or Intel.
+To change lighting, the screen or keyboard settings, connect the keyboard with its USB-C cable.
+
+AULA Studio is an independent app. It isn't made by or affiliated with AULA or Epomaker.
