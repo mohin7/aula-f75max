@@ -1,12 +1,3 @@
-/** Short facts for "Light, native and private." Qualitative only: no invented numbers. */
-export const performance = [
-  { title: 'Native SwiftUI', body: 'Built with Apple’s own frameworks. No Electron, no web views.' },
-  { title: 'No drivers', body: 'Uses standard macOS HID and Bluetooth. Nothing extra to install.' },
-  { title: 'Live sync over USB-C', body: 'Changes apply as you make them, and the keyboard confirms each one.' },
-  { title: 'Universal', body: 'Runs natively on Apple silicon and Intel, macOS 15 or later.' },
-  { title: 'Private by design', body: 'No network access, no analytics, no accounts. Typing is never recorded.' },
-] as const
-
 /** FAQ, also published as FAQPage structured data. Keep answers factual. */
 export const faqs = [
   { q: 'Which keyboards are supported?', a: 'The AULA F75 Max. Support for other AULA models is being explored but isn’t available yet.' },
@@ -48,12 +39,6 @@ export const knobModes = [
   { id: 'brightness', name: 'Brightness', unit: '%', min: 0, max: 100, start: 70, available: false },
   { id: 'zoom', name: 'Zoom', unit: '%', min: 25, max: 400, start: 100, available: false },
   { id: 'timeline', name: 'Timeline', unit: 's', min: 0, max: 120, start: 18, available: false },
-] as const
-
-export const howItWorks = [
-  { step: '01', title: 'Download and install', body: 'Download the app, drag it into Applications, and allow it once in System Settings → Privacy & Security.' },
-  { step: '02', title: 'Connect your F75 Max', body: 'Plug in the USB-C cable to change settings. Over Bluetooth, the app shows live keys, battery and firmware.' },
-  { step: '03', title: 'Customize', body: 'Change lighting, upload to the screen and tune settings. The keyboard keeps them when you switch back to Bluetooth.' },
 ] as const
 
 export const docs = [

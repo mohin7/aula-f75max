@@ -1,52 +1,73 @@
 <script setup lang="ts">
+const links = useSiteLinks()
+
 const steps = [
-  {
-    title: 'Download',
-    body: 'Click the button. AULA Studio downloads as a small disk image.',
-    icon: 'M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19h14',
-  },
-  {
-    title: 'Drag to Applications',
-    body: 'Open the downloaded file and drag AULA Studio into the Applications folder.',
-    icon: 'M4 6h6l2 2h8v10H4zM12 11v5M9.5 13.5L12 16l2.5-2.5',
-  },
-  {
-    title: 'Allow it once',
-    body: 'The first time, open System Settings → Privacy & Security and click Open Anyway.',
-    icon: 'M12 3l7 3v6c0 4.5-3 7.8-7 9-4-1.2-7-4.5-7-9V6zM9 12l2 2 4-4',
-  },
+  { title: 'Download', body: 'Click the button. AULA Studio downloads as a small disk image.' },
+  { title: 'Drag to Applications', body: 'Open the downloaded file and drag AULA Studio into the Applications folder.' },
+  { title: 'Allow it once', body: 'The first time, open System Settings → Privacy & Security and click Open Anyway.' },
 ]
+
+const cloneCommand = `git clone ${links.github} && cd aula-f75max && make open`
 </script>
 
 <template>
-  <section id="download" class="relative overflow-hidden px-5 py-12 sm:px-8 sm:py-20" aria-labelledby="download-title">
-    <div class="relative mx-auto max-w-5xl overflow-hidden rounded-[32px] bg-ink-850 px-6 py-12 text-center ring-1 ring-white/[0.08] sm:px-12 sm:py-14">
-      <UiGlow :intensity="0.9" />
-      <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[rgb(var(--rgb-primary)/0.8)] to-transparent" />
-
-      <div v-reveal class="flex flex-col items-center">
-        <NuxtImg src="/images/app-icon-512.png" alt="" width="112" height="112" sizes="112px" densities="x1 x2" loading="lazy" class="size-20 drop-shadow-[0_20px_40px_rgb(var(--rgb-primary)/0.45)]" />
-        <h2 id="download-title" class="mt-6 text-balance text-4xl leading-[1.02] font-semibold tracking-[-0.035em] text-white sm:text-5xl">Get AULA Studio.</h2>
-        <p class="mt-5 max-w-md text-pretty text-lg leading-relaxed text-ink-300">Free for your Mac. Works on Apple silicon and Intel.</p>
-
-        <DownloadButton details class="mt-8 w-full sm:w-auto" />
+  <section id="download" class="section overflow-hidden" aria-labelledby="download-title">
+    <div class="frame">
+      <div v-reveal>
+        <UiSectionHeading
+          id="download-title"
+          eyebrow="Get started"
+          title="Up and running in a minute."
+          description="Free for your Mac. Download the app, or build it yourself from source."
+          meta=".dmg · Apple silicon and Intel · macOS 15+"
+        />
       </div>
 
-      <ol class="mx-auto mt-10 grid max-w-4xl gap-3 text-left md:grid-cols-3">
-        <li v-for="(step, i) in steps" :key="step.title" v-reveal="i * 80" class="rounded-2xl bg-white/[0.03] p-4 ring-1 ring-white/[0.07] sm:p-5">
-          <div class="flex items-center gap-3">
-            <span class="grid size-9 place-items-center rounded-xl bg-white/[0.06] text-white ring-1 ring-white/10" aria-hidden="true">
-              <svg viewBox="0 0 24 24" class="size-[18px]" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path :d="step.icon" /></svg>
-            </span>
-            <h3 class="font-medium text-white"><span class="sr-only">Step {{ i + 1 }}: </span>{{ step.title }}</h3>
+      <div v-reveal class="relative mt-12">
+        <UiGlow :intensity="0.7" />
+        <div class="grid gap-px overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--line)] lg:grid-cols-[1.1fr_1fr]">
+          <!-- Download -->
+          <div class="flex flex-col items-start gap-6 bg-ink-900 p-6 sm:p-8">
+            <div class="flex items-center gap-4">
+              <NuxtImg src="/images/app-icon-512.png" alt="" width="112" height="112" sizes="64px" densities="x1 x2" loading="lazy" class="size-16 drop-shadow-[0_14px_28px_rgb(var(--rgb-primary)/0.4)]" />
+              <div>
+                <p class="text-lg font-semibold tracking-tight text-white">AULA Studio for Mac</p>
+                <p class="meta mt-0.5">Free · open source · MIT</p>
+              </div>
+            </div>
+            <DownloadButton details class="w-full sm:w-auto" />
+            <p class="max-w-md text-pretty text-sm leading-relaxed text-ink-300">
+              AULA Studio isn’t notarized by Apple yet, so macOS asks you to confirm the first time (step 3). It never changes your keyboard’s firmware.
+            </p>
           </div>
-          <p class="mt-2.5 text-pretty text-sm leading-relaxed text-ink-300">{{ step.body }}</p>
-        </li>
-      </ol>
 
-      <p class="mx-auto mt-8 max-w-xl text-pretty text-xs leading-relaxed text-ink-400">
-        Why step 3? AULA Studio isn’t notarized by Apple yet, so macOS asks you to confirm the first time. It’s open source, and it never changes your keyboard’s firmware.
-      </p>
+          <!-- From source -->
+          <div class="flex flex-col gap-6 bg-ink-900 p-6 sm:p-8">
+            <div>
+              <p class="flex items-center gap-2 text-lg font-semibold tracking-tight text-white">
+                <svg viewBox="0 0 24 24" class="size-5 text-ink-400" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14" /></svg>
+                Build from source
+              </p>
+              <p class="mt-2 text-sm leading-relaxed text-ink-300">Needs macOS 15 and Swift 6, from Xcode or the Command Line Tools.</p>
+            </div>
+            <UiCommand :command="cloneCommand" label="Clone and build AULA Studio" />
+            <div>
+              <p class="mb-2 text-sm text-ink-300">No keyboard? Try demo mode:</p>
+              <UiCommand command="AULA_DEMO=1 make run" label="Run AULA Studio in demo mode" />
+            </div>
+          </div>
+        </div>
+
+        <ol class="mt-4 grid gap-px overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--line)] md:grid-cols-3">
+          <li v-for="(step, i) in steps" :key="step.title" v-reveal="i * 70" class="flex gap-4 bg-ink-900 p-5 sm:p-6">
+            <span class="font-mono text-sm text-[rgb(var(--rgb-primary))]" aria-hidden="true">0{{ i + 1 }}</span>
+            <div>
+              <h3 class="font-medium text-white"><span class="sr-only">Step {{ i + 1 }}: </span>{{ step.title }}</h3>
+              <p class="mt-1.5 text-pretty text-sm leading-relaxed text-ink-300">{{ step.body }}</p>
+            </div>
+          </li>
+        </ol>
+      </div>
     </div>
   </section>
 </template>

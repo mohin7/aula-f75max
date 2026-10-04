@@ -19,7 +19,7 @@ const id = useId()
       :class="model ? 'bg-[rgb(var(--rgb-primary))]' : 'bg-white/15'"
       @click="model = !model"
     >
-      <span class="absolute top-[2px] left-[2px] size-[18px] rounded-full bg-white shadow-[0_1px_3px_rgba(0,0,0,0.4)] transition-transform duration-200 ease-[var(--ease-spring)]" :class="model && 'translate-x-4'" />
+      <span class="absolute top-[2px] left-[2px] size-[18px] rounded-full bg-[#fff] shadow-[0_1px_3px_rgba(0,0,0,0.4)] transition-transform duration-200 ease-[var(--ease-spring)]" :class="model && 'translate-x-4'" />
     </button>
   </div>
 </template>

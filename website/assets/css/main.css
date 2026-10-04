@@ -1,8 +1,15 @@
+@import "@fontsource/ibm-plex-sans/latin-400.css";
+@import "@fontsource/ibm-plex-sans/latin-500.css";
+@import "@fontsource/ibm-plex-sans/latin-600.css";
+@import "@fontsource/ibm-plex-mono/latin-400.css";
+@import "@fontsource/ibm-plex-mono/latin-500.css";
 @import "tailwindcss";
 
 @theme {
-  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  /* The recreated app window keeps the system font, like the real app. */
+  --font-app: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", "Segoe UI", sans-serif;
 
   --color-ink-950: #050506;
   --color-ink-900: #0a0a0c;
@@ -31,7 +38,56 @@
   /* The accent follows the lighting effect picked on the page. */
   --rgb-primary: 139 92 246;
   --rgb-secondary: 34 211 238;
+}
+
+/*
+ * Two themes, one set of utility classes. Components say `text-white` and `bg-ink-850`;
+ * each theme redefines what those names mean, so nothing has to be written twice.
+ * Anything wrapped in data-theme="dark" (the keyboard, code panels) stays dark in both.
+ */
+:root,
+[data-theme="dark"] {
   color-scheme: dark;
+  --color-white: #fff;
+  --color-ink-950: #050506;
+  --color-ink-900: #0a0a0c;
+  --color-ink-850: #0f0f12;
+  --color-ink-800: #141418;
+  --color-ink-700: #1c1c21;
+  --color-ink-600: #26262c;
+  --color-ink-500: #5a5a63;
+  --color-ink-400: #86868f;
+  --color-ink-300: #a1a1aa;
+  --color-ink-200: #d4d4d8;
+  --color-ink-100: #f4f4f5;
+  --line: rgb(255 255 255 / 0.08);
+  --line-strong: rgb(255 255 255 / 0.14);
+  --glass: rgb(15 15 18 / 0.78);
+  --grid-line: rgb(255 255 255 / 0.028);
+  --glow: 1;
+  --shadow-soft: rgb(0 0 0 / 0.8);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --color-white: #0c1017;
+  --color-ink-950: #ffffff;
+  --color-ink-900: #ffffff;
+  --color-ink-850: #f6f7f9;
+  --color-ink-800: #f0f2f5;
+  --color-ink-700: #e7eaef;
+  --color-ink-600: #d9dde4;
+  --color-ink-500: #8d94a0;
+  --color-ink-400: #6b727e;
+  --color-ink-300: #4f5663;
+  --color-ink-200: #2d333d;
+  --color-ink-100: #1b1f27;
+  --line: #e5e8ed;
+  --line-strong: #d3d8e0;
+  --glass: rgb(255 255 255 / 0.78);
+  --grid-line: rgb(15 23 42 / 0.045);
+  --glow: 0.45;
+  --shadow-soft: rgb(15 23 42 / 0.22);
 }
 
 html {
@@ -47,6 +103,11 @@ html {
 body {
   min-height: 100dvh;
   overflow-x: clip;
+}
+
+/* Theme changes fade instead of snapping. Only while the toggle is working. */
+html.theme-fade, html.theme-fade * {
+  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease, fill 0.35s ease, stroke 0.35s ease !important;
 }
 
 ::selection {
@@ -69,11 +130,50 @@ body {
 }
 
 @utility hairline {
-  border-color: rgb(255 255 255 / 0.08);
+  border-color: var(--line);
+}
+
+/* Page frame: full-width hairline between sections, vertical rails at the content edges. */
+@utility section {
+  position: relative;
+  border-top: 1px solid var(--line);
+}
+@utility frame {
+  position: relative;
+  margin-inline: auto;
+  max-width: 78rem;
+  border-inline: 1px solid var(--line);
+  padding: 3.5rem 1.25rem;
+  @media (min-width: 40rem) { padding: 6rem 2.5rem; }
+}
+
+/* Small technical caption: spec names, register addresses, file names. */
+@utility meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--color-ink-400);
+}
+
+/* Faint blueprint grid. Fades out with a mask where it is used. */
+@utility grid-bg {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+@utility dot-bg {
+  background-image: radial-gradient(var(--grid-line) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+@utility font-app {
+  font-family: var(--font-app);
 }
 
 @utility glass {
-  background: rgb(15 15 18 / 0.78);
+  background: var(--glass);
   backdrop-filter: saturate(160%) blur(20px);
   -webkit-backdrop-filter: saturate(160%) blur(20px);
 }

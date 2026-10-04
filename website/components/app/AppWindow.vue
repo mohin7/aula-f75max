@@ -17,6 +17,8 @@ provideStudioDemo(demo)
 watch(section, (value) => (demo.state.section = value))
 watch(() => demo.state.section, (value) => (section.value = value))
 
+const { version: appVersion } = useSiteLinks()
+const version = appVersion ? `v${appVersion}` : ''
 const current = computed(() => appSections.find((s) => s.id === section.value)!)
 
 function go(id: SectionId) {
@@ -26,14 +28,14 @@ function go(id: SectionId) {
 
 <template>
   <div
-    class="@container relative overflow-hidden rounded-[14px] bg-[#131317] text-left shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_50px_120px_-30px_rgba(0,0,0,0.9)] sm:rounded-[18px]"
+    class="font-app @container relative overflow-hidden rounded-[14px] bg-ink-850 text-left shadow-[0_0_0_1px_var(--line-strong),0_50px_120px_-30px_var(--shadow-soft)] sm:rounded-[18px]"
     :style="{ '--rgb-primary': demo.state.color }"
     role="group"
     aria-roledescription="app preview"
     aria-label="AULA Studio app, recreated for this page"
   >
     <!-- Title bar -->
-    <div class="relative flex h-11 items-center border-b border-black/50 bg-[#1b1b20] px-4">
+    <div class="relative flex h-11 items-center border-b border-[var(--line)] bg-ink-800 px-4">
       <div class="flex gap-2" aria-hidden="true">
         <span class="size-3 rounded-full bg-[#ff5f57]" /><span class="size-3 rounded-full bg-[#febc2e]" /><span class="size-3 rounded-full bg-[#28c840]" />
       </div>
@@ -46,7 +48,7 @@ function go(id: SectionId) {
 
     <div class="flex">
       <!-- Sidebar -->
-      <nav class="hidden w-52 shrink-0 flex-col border-r border-black/40 bg-[#18181d]/90 p-3 @3xl:flex" aria-label="App sections">
+      <nav class="hidden w-52 shrink-0 flex-col border-r border-[var(--line)] bg-ink-800/90 p-3 @3xl:flex" aria-label="App sections">
         <ul class="flex flex-col gap-0.5">
           <li v-for="item in appSections" :key="item.id">
             <button
@@ -80,7 +82,7 @@ function go(id: SectionId) {
 
       <div class="min-w-0 flex-1">
         <!-- Compact navigation for narrow windows -->
-        <nav v-if="navigable" class="flex gap-1 overflow-x-auto border-b border-black/40 bg-[#18181d] px-3 py-2 [scrollbar-width:none] @3xl:hidden" aria-label="App sections">
+        <nav v-if="navigable" class="flex gap-1 overflow-x-auto border-b border-[var(--line)] bg-ink-800 px-3 py-2 [scrollbar-width:none] @3xl:hidden" aria-label="App sections">
           <button
             v-for="item in appSections"
             :key="item.id"
@@ -105,6 +107,12 @@ function go(id: SectionId) {
           </Transition>
         </main>
       </div>
+    </div>
+
+    <!-- Status bar -->
+    <div class="meta flex items-center justify-between gap-4 border-t border-[var(--line)] bg-ink-800 px-4 py-2 text-[11px]">
+      <span class="flex items-center gap-1.5"><span class="size-1.5 rounded-full bg-emerald-400" aria-hidden="true" />Interactive recreation · not connected to a keyboard</span>
+      <span class="hidden sm:block">{{ version }}</span>
     </div>
   </div>
 </template>

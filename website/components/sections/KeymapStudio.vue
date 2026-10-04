@@ -28,17 +28,17 @@ function onSelect(key: { id: string }) {
 </script>
 
 <template>
-  <section id="keymap" ref="root" class="relative px-5 py-14 sm:px-8 sm:py-24" style="--rgb-primary: 251 146 60" aria-labelledby="keymap-title">
-    <div class="mx-auto max-w-6xl">
+  <section id="keymap" ref="root" class="section" style="--rgb-primary: 251 146 60" aria-labelledby="keymap-title">
+    <div class="frame">
       <div v-reveal>
-        <UiSectionHeading id="keymap-title" soon eyebrow="Key Mapping" title="Every key can do more." description="Turn Caps Lock into Spotlight, F1 into Play/Pause, F2 into your favorite app. Key mapping is in development; this is an interactive preview of the design." />
+        <UiSectionHeading id="keymap-title" meta="design preview · not in the app yet" soon eyebrow="Key Mapping" title="Every key can do more." description="Turn Caps Lock into Spotlight, F1 into Play/Pause, F2 into your favorite app. Key mapping is in development; this is an interactive preview of the design." />
       </div>
 
       <div v-reveal class="mt-12 grid items-start gap-8 lg:grid-cols-[1fr_340px]">
         <div>
           <!-- Remap flow -->
           <div class="mb-8 flex items-center justify-center gap-4 sm:gap-6" aria-live="polite">
-            <span class="grid h-14 min-w-20 place-items-center rounded-2xl bg-gradient-to-b from-ink-600 to-ink-700 px-4 text-lg font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_4px_0_#111] transition-shadow duration-500" :class="stage >= 1 && 'shadow-[0_0_0_2px_rgb(251_146_60),0_4px_0_#111,0_0_30px_rgb(251_146_60/0.5)]'">
+            <span data-theme="dark" class="grid h-14 min-w-20 place-items-center rounded-2xl bg-gradient-to-b from-ink-600 to-ink-700 px-4 text-lg font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_4px_0_#111] transition-shadow duration-500" :class="stage >= 1 && 'shadow-[0_0_0_2px_rgb(251_146_60),0_4px_0_#111,0_0_30px_rgb(251_146_60/0.5)]'">
               {{ selected.mac ?? (selected.label || 'Space') }}
             </span>
             <svg viewBox="0 0 48 12" class="w-12 text-ink-400 sm:w-16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">

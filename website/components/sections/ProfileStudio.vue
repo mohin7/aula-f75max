@@ -10,11 +10,11 @@ const options = profiles.map((p) => ({ value: p.id, label: p.name }))
 </script>
 
 <template>
-  <section id="profiles" class="relative overflow-hidden px-5 py-14 sm:px-8 sm:py-24" :style="{ '--rgb-primary': profile.accent }" aria-labelledby="profiles-title">
+  <section id="profiles" class="section overflow-hidden" :style="{ '--rgb-primary': profile.accent }" aria-labelledby="profiles-title">
     <UiGlow :color="profile.accent" :intensity="0.6" />
-    <div class="mx-auto max-w-6xl">
+    <div class="frame">
       <div v-reveal>
-        <UiSectionHeading id="profiles-title" soon eyebrow="Profiles" :title="'One keyboard.\nEvery workflow.'" description="Save lighting and settings together and switch in one click. Profiles are planned; switch between these examples to preview the idea." />
+        <UiSectionHeading id="profiles-title" meta="design preview · not in the app yet" soon eyebrow="Profiles" :title="'One keyboard.\nEvery workflow.'" description="Save lighting and settings together and switch in one click. Profiles are planned; switch between these examples to preview the idea." />
       </div>
 
       <div v-reveal class="mt-10 flex justify-center">

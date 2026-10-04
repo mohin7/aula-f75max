@@ -10,8 +10,8 @@ const options = knobModes.map((m) => ({ value: m.id, label: m.name }))
 </script>
 
 <template>
-  <section id="knob" class="relative px-5 py-14 sm:px-8 sm:py-24" style="--rgb-primary: 139 92 246" aria-labelledby="knob-title">
-    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
+  <section id="knob" class="section" style="--rgb-primary: 139 92 246" aria-labelledby="knob-title">
+    <div class="frame grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
       <div v-reveal>
         <UiSectionHeading id="knob-title" align="left" eyebrow="The knob" title="Turn to take control." description="The F75 Max’s knob controls volume out of the box, and AULA Studio shows every turn live. Custom knob actions, like brightness, zoom or scrubbing a timeline, are ideas for later." />
         <div class="mt-8">

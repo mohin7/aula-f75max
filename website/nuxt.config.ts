@@ -32,12 +32,18 @@ export default defineNuxtConfig({
   app: {
     baseURL,
     head: {
-      htmlAttrs: { lang: 'en', class: 'dark' },
+      htmlAttrs: { lang: 'en' },
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' },
-        { name: 'theme-color', content: '#08080a' },
-        { name: 'color-scheme', content: 'dark' },
+        { name: 'theme-color', content: '#0a0a0c', media: '(prefers-color-scheme: dark)' },
+        { name: 'theme-color', content: '#ffffff', media: '(prefers-color-scheme: light)' },
+        { name: 'color-scheme', content: 'dark light' },
       ],
+      // Sets the theme before first paint, so there is no flash. Falls back to dark (the default in CSS).
+      script: [{
+        tagPriority: 'critical',
+        innerHTML: "try{var t=localStorage.getItem('aula-theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=t}catch(e){}",
+      }],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: `${baseURL}favicon.svg` },
         { rel: 'icon', type: 'image/png', sizes: '48x48', href: `${baseURL}favicon-48.png` },

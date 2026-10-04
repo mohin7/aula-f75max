@@ -22,10 +22,10 @@ onBeforeUnmount(() => clearInterval(timer))
 </script>
 
 <template>
-  <section id="macros" ref="root" class="relative px-5 py-14 sm:px-8 sm:py-24" style="--rgb-primary: 236 72 153" aria-labelledby="macros-title">
-    <div class="mx-auto max-w-6xl">
+  <section id="macros" ref="root" class="section" style="--rgb-primary: 236 72 153" aria-labelledby="macros-title">
+    <div class="frame">
       <div v-reveal>
-        <UiSectionHeading id="macros-title" soon eyebrow="Macro Studio" title="Automate the repetitive." description="Build sequences of keys, delays and text on a timeline. Macros are planned for a future release; the timeline below previews the design." />
+        <UiSectionHeading id="macros-title" meta="design preview · not in the app yet" soon eyebrow="Macro Studio" title="Automate the repetitive." description="Build sequences of keys, delays and text on a timeline. Macros are planned for a future release; the timeline below previews the design." />
       </div>
 
       <div v-reveal class="relative mx-auto mt-12 max-w-5xl">
@@ -52,6 +52,7 @@ onBeforeUnmount(() => clearInterval(timer))
                 :aria-current="i === active ? 'step' : undefined"
               >
                 <span
+                  :data-theme="step.type === 'delay' ? undefined : 'dark'"
                   class="grid h-11 place-items-center rounded-xl text-lg font-medium transition-all duration-500"
                   :class="[
                     step.type === 'delay' ? 'bg-transparent text-sm text-ink-300 ring-1 ring-white/15' : 'bg-gradient-to-b from-ink-600 to-ink-700 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_3px_0_#111]',

@@ -124,6 +124,7 @@ const date = computed(() => now.value?.toLocaleDateString([], { weekday: 'short'
 <template>
   <div
     ref="root"
+    data-theme="dark"
     class="kb"
     :class="{ 'kb--dark': dark, [`kb--${lighting.effect}`]: true }"
     :style="{ '--rgb-primary': lighting.color, '--spectrum-duration': `${8 - lighting.speed}s` }"

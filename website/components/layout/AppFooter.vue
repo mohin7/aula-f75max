@@ -6,6 +6,7 @@ const links = useSiteLinks()
 const columns = [
   { title: 'Product', items: [
     { label: 'Features', href: '#features' },
+    { label: 'Privacy', href: '#privacy' },
     { label: 'Coming soon', href: '#keymap' },
     { label: 'FAQ', href: '#faq' },
     { label: 'Download', href: '#download' },
@@ -26,8 +27,9 @@ const columns = [
 </script>
 
 <template>
-  <footer class="border-t border-white/[0.06] px-5 pt-12 pb-8 sm:px-8">
-    <div class="mx-auto grid max-w-6xl grid-cols-3 gap-x-4 gap-y-10 md:grid-cols-[1.4fr_1fr_1fr_1fr] md:gap-12">
+  <footer class="section">
+    <div class="frame !pb-10 !pt-12 sm:!pt-14">
+    <div class="grid grid-cols-3 gap-x-4 gap-y-10 md:grid-cols-[1.4fr_1fr_1fr_1fr] md:gap-12">
       <div class="col-span-3 flex flex-col gap-4 md:col-span-1">
         <AppLogo />
         <p class="text-ink-300">{{ site.tagline }}</p>
@@ -38,7 +40,7 @@ const columns = [
         </p>
       </div>
       <nav v-for="column in columns" :key="column.title" :aria-label="column.title">
-        <h2 class="text-sm font-medium text-white">{{ column.title }}</h2>
+        <h2 class="font-mono text-xs font-medium tracking-tight text-ink-400">{{ column.title }}</h2>
         <ul class="mt-4 flex flex-col gap-3">
           <li v-for="item in column.items" :key="item.label">
             <a
@@ -52,9 +54,10 @@ const columns = [
       </nav>
     </div>
 
-    <div class="mx-auto mt-10 flex max-w-6xl flex-col gap-3 border-t border-white/[0.06] pt-8 text-xs text-ink-400 sm:flex-row sm:items-center sm:justify-between">
+    <div class="meta mt-12 flex flex-col gap-3 border-t border-[var(--line)] pt-8 text-xs sm:flex-row sm:items-center sm:justify-between">
       <p>© 2026 AULA Studio · Made for macOS · Open source under the MIT License</p>
       <p class="max-w-xl text-pretty sm:text-right">Unofficial app. Not affiliated with or endorsed by AULA or Epomaker. Product names are trademarks of their respective owners.</p>
+    </div>
     </div>
   </footer>
 </template>

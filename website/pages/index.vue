@@ -64,12 +64,13 @@ useHead({
     <main id="main">
       <HeroSection />
       <FeatureShowcase />
+      <FeatureBento />
+      <ProtocolSection />
+      <PrivacySection />
       <KeymapStudio />
       <MacroStudio />
       <ProfileStudio />
       <KnobSection />
-      <PerformanceSection />
-      <HowItWorks />
       <DownloadSection />
       <ContributionSection />
       <DocumentationSection />

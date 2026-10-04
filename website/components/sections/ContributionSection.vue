@@ -9,10 +9,10 @@ const ways = [
 </script>
 
 <template>
-  <section id="contribute" class="relative px-5 py-14 sm:px-8 sm:py-24" aria-labelledby="contribute-title">
-    <div class="mx-auto max-w-6xl">
+  <section id="contribute" class="section" aria-labelledby="contribute-title">
+    <div class="frame">
       <div v-reveal>
-        <UiSectionHeading id="contribute-title" eyebrow="Open source" title="Built in the open." description="AULA Studio is MIT-licensed and made for the Mac community. Contributions of every size are welcome." />
+        <UiSectionHeading id="contribute-title" meta="MIT · open to pull requests" eyebrow="Open source" title="Built in the open." description="AULA Studio is MIT-licensed and made for the Mac community. Contributions of every size are welcome." />
       </div>
 
       <ul class="mt-12 grid gap-4 md:grid-cols-3">

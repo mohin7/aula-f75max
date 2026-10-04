@@ -45,15 +45,16 @@ const callouts = [
 </script>
 
 <template>
-  <section id="top" class="relative isolate overflow-hidden px-5 pt-8 pb-6 sm:px-8 sm:pt-12" :style="{ '--rgb-primary': lighting.color }" aria-labelledby="hero-title">
+  <section id="top" class="relative isolate overflow-hidden" :style="{ '--rgb-primary': lighting.color }" aria-labelledby="hero-title">
     <!-- Ambient light, tinted by the keyboard color -->
     <div aria-hidden="true" class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[1200px] overflow-hidden">
-      <div class="absolute left-1/2 top-[520px] h-[600px] w-[1200px] -translate-x-1/2 rounded-full blur-2xl transition-[background] duration-700" :style="{ background: `radial-gradient(closest-side, rgb(${lighting.color} / 0.32), transparent)` }" />
-      <div class="absolute left-[66%] top-[660px] h-[420px] w-[700px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(34_211_238/0.14),transparent)] blur-2xl" />
+      <div class="absolute left-1/2 top-[520px] h-[600px] w-[1200px] -translate-x-1/2 rounded-full blur-2xl transition-[background] duration-700" :style="{ background: `radial-gradient(closest-side, rgb(${lighting.color} / calc(0.32 * var(--glow))), transparent)` }" />
+      <div class="absolute left-[66%] top-[660px] h-[420px] w-[700px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(34_211_238/calc(0.14*var(--glow))),transparent)] blur-2xl" />
       <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.07),transparent_55%)]" />
-      <div class="absolute inset-0 bg-[linear-gradient(to_right,rgb(255_255_255/0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgb(255_255_255/0.025)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_at_top,black_20%,transparent_70%)]" />
+      <div class="grid-bg absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_25%,transparent_72%)]" />
     </div>
 
+    <div class="frame !pt-10 !pb-8 sm:!pt-14 sm:!pb-12">
     <div class="mx-auto flex max-w-4xl flex-col items-center text-center">
       <!-- Hook -->
       <a href="#features" class="animate-fade-up group inline-flex items-center gap-2 rounded-full bg-white/[0.05] py-1 pr-3 pl-1 text-[13px] text-ink-200 ring-1 ring-white/10 transition-colors [animation-delay:40ms] hover:bg-white/[0.09]">
@@ -62,7 +63,7 @@ const callouts = [
         <svg viewBox="0 0 16 16" class="size-3 text-ink-400 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 3l5 5-5 5" /></svg>
       </a>
 
-      <h1 id="hero-title" class="animate-fade-up mt-5 text-balance text-[2.9rem] leading-[0.98] font-semibold tracking-[-0.05em] text-white [animation-delay:100ms] sm:text-6xl lg:text-[4.75rem]">
+      <h1 id="hero-title" class="animate-fade-up mt-5 text-balance text-[2.9rem] leading-[1] font-semibold tracking-[-0.045em] text-white [animation-delay:100ms] sm:text-6xl lg:text-[4.75rem]">
         Finally, a Mac app<br>
         for your <span class="hero-gradient bg-clip-text text-transparent" :style="{ '--hero-a': lighting.color }">F75 Max.</span>
       </h1>
@@ -78,6 +79,17 @@ const callouts = [
           <svg viewBox="0 0 16 16" class="size-3.5 opacity-60" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v9M4.5 8.5L8 12l3.5-3.5" /></svg>
         </UiButton>
       </div>
+
+      <!-- Spec chips: which links do what -->
+      <ul class="animate-fade-up meta mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 [animation-delay:300ms]" aria-label="Connections">
+        <li class="flex items-center gap-1.5 text-ink-200"><span class="size-1.5 rounded-full bg-emerald-400" aria-hidden="true" />USB-C <span class="text-ink-400">· configure</span></li>
+        <li class="text-ink-500" aria-hidden="true">/</li>
+        <li class="flex items-center gap-1.5 text-ink-200"><span class="size-1.5 rounded-full bg-sky-400" aria-hidden="true" />Bluetooth <span class="text-ink-400">· keys, battery</span></li>
+        <li class="text-ink-500" aria-hidden="true">/</li>
+        <li class="flex items-center gap-1.5 text-ink-200"><span class="size-1.5 rounded-full bg-amber-400" aria-hidden="true" />2.4G <span class="text-ink-400">· soon</span></li>
+        <li class="hidden text-ink-500 sm:block" aria-hidden="true">/</li>
+        <li class="hidden sm:block">MIT · Not affiliated with AULA</li>
+      </ul>
     </div>
 
     <!-- Live keyboard -->
@@ -88,6 +100,7 @@ const callouts = [
           <span
             v-for="(item, i) in history"
             :key="item.n"
+            data-theme="dark"
             class="grid h-8 min-w-8 place-items-center rounded-lg bg-gradient-to-b from-ink-600 to-ink-700 px-2 text-[13px] font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_3px_0_#0b0b0d]"
             :style="{ opacity: 0.35 + ((i + 1) / history.length) * 0.65, boxShadow: i === history.length - 1 ? `inset 0 1px 0 rgba(255,255,255,0.1), 0 3px 0 #0b0b0d, 0 0 18px rgb(${lighting.color} / 0.7)` : undefined }"
           >{{ item.label }}</span>
@@ -116,7 +129,7 @@ const callouts = [
         <div
           v-for="(callout, i) in callouts"
           :key="callout.id"
-          class="callout glass pointer-events-none absolute hidden items-center gap-3 rounded-2xl py-2.5 pr-4 pl-2.5 shadow-[0_0_0_1px_rgba(255,255,255,0.09),0_20px_50px_-15px_rgba(0,0,0,0.9)] xl:flex"
+          class="callout glass pointer-events-none absolute hidden items-center gap-3 rounded-2xl py-2.5 pr-4 pl-2.5 shadow-[0_0_0_1px_var(--line-strong),0_20px_50px_-15px_var(--shadow-soft)] xl:flex"
           :class="[callout.position, !reduced && 'callout--float']"
           :style="{ '--depth': callout.depth, animationDelay: `${i * -1.7}s` }"
           aria-hidden="true"
@@ -147,7 +160,7 @@ const callouts = [
               :aria-checked="lighting.color === swatch.rgb"
               :aria-label="swatch.name"
               class="size-6 rounded-full transition-transform duration-200 hover:scale-110"
-              :style="{ backgroundColor: `rgb(${swatch.rgb})`, boxShadow: lighting.color === swatch.rgb ? `0 0 0 2px #0f0f12, 0 0 0 3.5px rgb(${swatch.rgb}), 0 0 14px rgb(${swatch.rgb} / 0.8)` : 'inset 0 0 0 1px rgb(255 255 255 / 0.15)' }"
+              :style="{ backgroundColor: `rgb(${swatch.rgb})`, boxShadow: lighting.color === swatch.rgb ? `0 0 0 2px var(--color-ink-900), 0 0 0 3.5px rgb(${swatch.rgb}), 0 0 14px rgb(${swatch.rgb} / 0.8)` : 'inset 0 0 0 1px rgb(255 255 255 / 0.15)' }"
               @click="lighting.color = swatch.rgb"
             />
           </div>
@@ -162,6 +175,7 @@ const callouts = [
         <p class="sr-only">{{ callouts.map((c) => `${c.title}: ${c.body}.`).join(' ') }}</p>
       </div>
     </div>
+    </div>
   </section>
 </template>
 
@@ -170,6 +184,9 @@ const callouts = [
   background-image: linear-gradient(100deg, rgb(var(--hero-a)) 0%, rgb(34 211 238) 45%, rgb(236 72 153) 80%, rgb(var(--hero-a)) 100%);
   background-size: 220% 100%;
   animation: hero-shine 9s linear infinite;
+}
+:global([data-theme="light"]) .hero-gradient {
+  background-image: linear-gradient(100deg, rgb(var(--hero-a)) 0%, rgb(8 145 178) 45%, rgb(219 39 119) 80%, rgb(var(--hero-a)) 100%);
 }
 @keyframes hero-shine {
   to { background-position: -220% 0; }

@@ -16,10 +16,10 @@ watch(() => props.keyDef.id, () => (selectedOption.value = props.options?.[0] ??
 </script>
 
 <template>
-  <aside class="glass w-full rounded-3xl p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_30px_80px_-20px_rgba(0,0,0,0.8)] sm:p-6" aria-live="polite">
+  <aside class="glass w-full rounded-3xl p-5 shadow-[0_0_0_1px_var(--line-strong),0_30px_80px_-20px_var(--shadow-soft)] sm:p-6" aria-live="polite">
     <div class="flex items-start justify-between gap-4">
       <div class="flex items-center gap-4">
-        <span class="grid size-14 place-items-center rounded-2xl bg-gradient-to-b from-ink-600 to-ink-700 text-xl font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_4px_0_#111,0_0_24px_rgb(var(--rgb-primary)/0.35)]">
+        <span data-theme="dark" class="grid size-14 place-items-center rounded-2xl bg-gradient-to-b from-ink-600 to-ink-700 text-xl font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_4px_0_#111,0_0_24px_rgb(var(--rgb-primary)/0.35)]">
           {{ keyDef.mac ?? (keyDef.label || '␣') }}
         </span>
         <div>
