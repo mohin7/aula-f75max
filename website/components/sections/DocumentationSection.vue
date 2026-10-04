@@ -8,7 +8,7 @@ const links = useSiteLinks()
   <section id="docs" class="section" aria-labelledby="docs-title">
     <div class="frame">
       <div v-reveal>
-        <UiSectionHeading id="docs-title" meta="README · Docs/ · protocol notes" eyebrow="Documentation" title="Everything you need to know." description="Guides and notes live alongside the code on GitHub." />
+        <UiSectionHeading id="docs-title" meta="README · Docs/ · protocol notes" eyebrow="Documentation" title="Everything you need to know" description="Guides and notes live alongside the code on GitHub." />
       </div>
 
       <ul class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">

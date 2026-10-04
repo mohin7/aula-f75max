@@ -17,7 +17,7 @@ const cloneCommand = `git clone ${links.github} && cd aula-f75max && make open`
         <UiSectionHeading
           id="download-title"
           eyebrow="Get started"
-          title="Up and running in a minute."
+          title="Up and running in a minute"
           description="Free for your Mac. Download the app, or build it yourself from source."
           meta=".dmg · Apple silicon and Intel · macOS 15+"
         />

@@ -12,7 +12,7 @@ const ways = [
   <section id="contribute" class="section" aria-labelledby="contribute-title">
     <div class="frame">
       <div v-reveal>
-        <UiSectionHeading id="contribute-title" meta="MIT · open to pull requests" eyebrow="Open source" title="Built in the open." description="AULA Studio is MIT-licensed and made for the Mac community. Contributions of every size are welcome." />
+        <UiSectionHeading id="contribute-title" meta="MIT · open to pull requests" eyebrow="Open source" title="Built in the open" description="AULA Studio is MIT-licensed and made for the Mac community. Contributions of every size are welcome." />
       </div>
 
       <ul class="mt-12 grid gap-4 md:grid-cols-3">

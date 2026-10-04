@@ -25,7 +25,7 @@ onBeforeUnmount(() => clearInterval(timer))
   <section id="macros" ref="root" class="section" style="--rgb-primary: 236 72 153" aria-labelledby="macros-title">
     <div class="frame">
       <div v-reveal>
-        <UiSectionHeading id="macros-title" meta="design preview · not in the app yet" soon eyebrow="Macro Studio" title="Automate the repetitive." description="Build sequences of keys, delays and text on a timeline. Macros are planned for a future release; the timeline below previews the design." />
+        <UiSectionHeading id="macros-title" meta="design preview · not in the app yet" soon eyebrow="Macro Studio" title="Automate the repetitive" description="Build sequences of keys, delays and text on a timeline. Macros are planned for a future release; the timeline below previews the design." />
       </div>
 
       <div v-reveal class="relative mx-auto mt-12 max-w-5xl">

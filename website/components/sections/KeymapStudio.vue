@@ -31,7 +31,7 @@ function onSelect(key: { id: string }) {
   <section id="keymap" ref="root" class="section" style="--rgb-primary: 251 146 60" aria-labelledby="keymap-title">
     <div class="frame">
       <div v-reveal>
-        <UiSectionHeading id="keymap-title" meta="design preview · not in the app yet" soon eyebrow="Key Mapping" title="Every key can do more." description="Turn Caps Lock into Spotlight, F1 into Play/Pause, F2 into your favorite app. Key mapping is in development; this is an interactive preview of the design." />
+        <UiSectionHeading id="keymap-title" meta="design preview · not in the app yet" soon eyebrow="Key Mapping" title="Every key can do more" description="Turn Caps Lock into Spotlight, F1 into Play/Pause, F2 into your favorite app. Key mapping is in development; this is an interactive preview of the design." />
       </div>
 
       <div v-reveal class="mt-12 grid items-start gap-8 lg:grid-cols-[1fr_340px]">

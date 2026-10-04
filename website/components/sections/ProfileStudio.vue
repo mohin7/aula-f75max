@@ -14,7 +14,7 @@ const options = profiles.map((p) => ({ value: p.id, label: p.name }))
     <UiGlow :color="profile.accent" :intensity="0.6" />
     <div class="frame">
       <div v-reveal>
-        <UiSectionHeading id="profiles-title" meta="design preview · not in the app yet" soon eyebrow="Profiles" :title="'One keyboard.\nEvery workflow.'" description="Save lighting and settings together and switch in one click. Profiles are planned; switch between these examples to preview the idea." />
+        <UiSectionHeading id="profiles-title" meta="design preview · not in the app yet" soon eyebrow="Profiles" :title="'One keyboard,\nevery workflow'" description="Save lighting and settings together and switch in one click. Profiles are planned; switch between these examples to preview the idea." />
       </div>
 
       <div v-reveal class="mt-10 flex justify-center">

@@ -9,7 +9,7 @@ const half = Math.ceil(faqs.length / 2)
   <section id="faq" class="section" aria-labelledby="faq-title">
     <div class="frame">
       <div v-reveal>
-        <UiSectionHeading id="faq-title" eyebrow="FAQ" title="Things you might ask." meta="6 questions" />
+        <UiSectionHeading id="faq-title" eyebrow="FAQ" title="Things you might ask" meta="6 questions" />
       </div>
       <div v-reveal class="mt-12 grid gap-x-12 md:grid-cols-2">
         <UiAccordion :items="faqs.slice(0, half)" />

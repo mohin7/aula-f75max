@@ -20,7 +20,7 @@ const rows = [
           <UiSectionHeading
             id="privacy-title"
             eyebrow="Private by design"
-            title="Nothing between your keyboard and your Mac."
+            title="Nothing between your keyboard and your Mac"
             description="No account, no telemetry, no cloud. The app has no network access at all, and what you type is never recorded. It's open source, so you can check."
           />
           <div class="mt-8 flex flex-wrap gap-2">

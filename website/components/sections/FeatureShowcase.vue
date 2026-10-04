@@ -22,7 +22,7 @@ useEventListener('hashchange', openFromHash)
   <section id="features" class="section" :style="{ '--rgb-primary': feature.accent }" aria-labelledby="features-title">
     <div class="frame">
       <div v-reveal>
-        <UiSectionHeading id="features-title" eyebrow="The app" title="One app for your whole keyboard." meta="SwiftUI · IOKit · CoreBluetooth" />
+        <UiSectionHeading id="features-title" eyebrow="The app" title="One app for your whole keyboard" meta="SwiftUI · IOKit · CoreBluetooth" />
       </div>
 
       <!-- Follows the page picked in the app window -->

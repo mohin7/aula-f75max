@@ -23,7 +23,7 @@ const miniKeys = Array.from({ length: 24 }, (_, i) => ({ col: i % 8, row: Math.f
         <UiSectionHeading
           id="capabilities-title"
           eyebrow="What it does"
-          title="Everything the keyboard offers, without Windows."
+          title="Everything the keyboard offers, without Windows"
           description="AULA makes no software for Mac. AULA Studio talks to the keyboard directly, with no drivers, no account and no network."
           meta="HID · IOKit · no drivers"
         />

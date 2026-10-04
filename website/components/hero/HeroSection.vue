@@ -65,7 +65,7 @@ const callouts = [
 
       <h1 id="hero-title" class="animate-fade-up mt-5 text-balance text-[2.9rem] leading-[1] font-semibold tracking-[-0.045em] text-white [animation-delay:100ms] sm:text-6xl lg:text-[4.75rem]">
         Finally, a Mac app<br>
-        for your <span class="hero-gradient bg-clip-text text-transparent" :style="{ '--hero-a': lighting.color }">F75 Max.</span>
+        for your <span class="hero-gradient bg-clip-text text-transparent" :style="{ '--hero-a': lighting.color }">F75 Max</span>
       </h1>
 
       <p class="animate-fade-up mt-5 max-w-3xl text-pretty text-lg leading-relaxed text-ink-300 [animation-delay:180ms]">

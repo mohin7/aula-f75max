@@ -29,7 +29,7 @@ const command = computed(() => `aulactl rgb ${current.value.mode} '${hex.value}'
         <UiSectionHeading
           id="protocol-title"
           eyebrow="Under the hood"
-          title="Every change goes straight to the keyboard."
+          title="Every change goes straight to the keyboard"
           description="No cloud, no middleman. AULA Studio writes over USB-C and waits for the keyboard to acknowledge. The same commands ship as a command-line tool."
           meta="USB-C · 0C45:800A · acknowledged writes"
         />
