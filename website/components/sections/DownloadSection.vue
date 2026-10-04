@@ -35,7 +35,10 @@ const cloneCommand = `git clone ${links.github} && cd aula-f75max && make open`
                 <p class="meta mt-0.5">Free · open source · MIT</p>
               </div>
             </div>
-            <DownloadButton details class="w-full sm:w-auto" />
+            <div class="flex w-full flex-col items-start gap-3">
+              <DownloadButton class="w-full sm:w-auto" />
+              <DownloadMeta />
+            </div>
             <p class="max-w-md text-pretty text-sm leading-relaxed text-ink-300">
               AULA Studio isn’t notarized by Apple yet, so macOS asks you to confirm the first time (step 3). It never changes your keyboard’s firmware.
             </p>

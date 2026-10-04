@@ -72,16 +72,17 @@ const callouts = [
         AULA doesn’t make software for Mac, so AULA Studio does. Change the lighting, put GIFs on the screen, sync the clock and tune every setting, in one native app.
       </p>
 
-      <div class="animate-fade-up mt-7 flex w-full flex-col items-center gap-3 [animation-delay:240ms] sm:w-auto sm:flex-row sm:items-start">
-        <DownloadButton details class="w-full sm:w-auto" />
+      <div class="animate-fade-up mt-7 flex w-full flex-col items-center gap-3 [animation-delay:240ms] sm:w-auto sm:flex-row">
+        <DownloadButton class="w-full sm:w-auto" />
         <UiButton href="#features" variant="secondary" size="lg" class="w-full sm:w-auto">
           See what it does
           <svg viewBox="0 0 16 16" class="size-3.5 opacity-60" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v9M4.5 8.5L8 12l3.5-3.5" /></svg>
         </UiButton>
       </div>
+      <DownloadMeta class="animate-fade-up mt-4 text-center [animation-delay:270ms]" />
 
       <!-- Spec chips: which links do what -->
-      <ul class="animate-fade-up meta mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 [animation-delay:300ms]" aria-label="Connections">
+      <ul class="animate-fade-up meta mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 [animation-delay:300ms]" aria-label="Connections">
         <li class="flex items-center gap-1.5 text-ink-200"><span class="size-1.5 rounded-full bg-emerald-400" aria-hidden="true" />USB-C <span class="text-ink-400">· configure</span></li>
         <li class="text-ink-500" aria-hidden="true">/</li>
         <li class="flex items-center gap-1.5 text-ink-200"><span class="size-1.5 rounded-full bg-sky-400" aria-hidden="true" />Bluetooth <span class="text-ink-400">· keys, battery</span></li>

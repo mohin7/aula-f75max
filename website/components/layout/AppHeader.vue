@@ -73,7 +73,8 @@ const nav = [
             </a>
           </li>
         </ul>
-        <DownloadButton details class="mt-10 w-full" />
+        <DownloadButton class="mt-10 w-full" />
+        <DownloadMeta class="mt-4 text-center" />
       </div>
     </Transition>
   </header>
