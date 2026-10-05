@@ -7,6 +7,7 @@ export default defineEventHandler((event) => {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>${withTrailingSlash(siteUrl)}</loc>
+    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>
     <changefreq>weekly</changefreq>
   </url>
 </urlset>
