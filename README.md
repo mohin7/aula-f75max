@@ -3,6 +3,8 @@
 **An unofficial, open-source macOS app for the AULA F75 Max keyboard.**
 AULA doesn't make software for Mac, so this app fills the gap. It's built natively with SwiftUI, IOKit and CoreBluetooth: no Electron, no web views, no kernel drivers.
 
+**Website: [aula.uxatom.com](https://aula.uxatom.com)**
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 ![macOS 15+](https://img.shields.io/badge/macOS-15%2B-black)
 ![Apple silicon and Intel](https://img.shields.io/badge/Mac-Apple%20silicon%20%7C%20Intel-lightgrey)
