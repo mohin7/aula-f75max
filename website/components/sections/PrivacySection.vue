@@ -42,7 +42,7 @@ const rows = [
             <div v-for="row in rows" :key="row.label" class="flex items-center justify-between gap-6 border-b border-[var(--line)] px-5 py-4 last:border-b-0">
               <dt class="text-[15px] text-white">{{ row.label }}</dt>
               <dd class="text-right">
-                <span v-if="row.tone === 'none'" class="inline-flex items-center gap-1.5 rounded-md bg-emerald-500/10 px-2 py-0.5 font-mono text-xs font-medium text-emerald-500 ring-1 ring-inset ring-emerald-500/25 in-data-[theme=dark]:text-emerald-400">
+                <span v-if="row.tone === 'none'" class="inline-flex items-center gap-1.5 rounded-md bg-emerald-500/10 px-2 py-0.5 font-mono text-xs font-medium text-ok ring-1 ring-inset ring-emerald-500/25">
                   <svg viewBox="0 0 12 12" class="size-3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 6.5l2.5 2.5 4.5-5.5" /></svg>
                   {{ row.value }}
                 </span>

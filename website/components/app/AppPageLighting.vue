@@ -22,7 +22,7 @@ onBeforeUnmount(() => clearTimeout(timer))
 <template>
   <div class="flex flex-col gap-5">
     <AppPageHeader title="Lighting" subtitle="Changes are sent to the keyboard as you make them.">
-      <span class="inline-flex h-7 items-center gap-1.5 rounded-full px-2.5 text-[11px] font-medium ring-1 ring-inset transition-colors" :class="status === 'sending' ? 'bg-white/[0.05] text-ink-200 ring-white/10' : 'bg-emerald-400/10 text-emerald-300 ring-emerald-400/20'" aria-live="polite">
+      <span class="inline-flex h-7 items-center gap-1.5 rounded-full px-2.5 text-[11px] font-medium ring-1 ring-inset transition-colors" :class="status === 'sending' ? 'bg-white/[0.05] text-ink-200 ring-white/10' : 'bg-emerald-400/10 text-ok ring-emerald-500/25'" aria-live="polite">
         <svg v-if="status === 'sending'" viewBox="0 0 16 16" class="size-3 animate-spin" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 2a6 6 0 1 0 6 6" /></svg>
         <svg v-else viewBox="0 0 16 16" class="size-3" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5l3 3 7-7" /></svg>
         {{ status === 'sending' ? 'Sending…' : status === 'applied' ? 'Keyboard confirmed' : 'In sync' }}

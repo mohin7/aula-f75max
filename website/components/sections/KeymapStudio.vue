@@ -44,7 +44,7 @@ function onSelect(key: { id: string }) {
             <svg viewBox="0 0 48 12" class="w-12 text-ink-400 sm:w-16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
               <path d="M0 6h46M40 1l6 5-6 5" class="transition-[stroke-dashoffset] duration-700" stroke-dasharray="60" :stroke-dashoffset="stage >= 2 ? 0 : 60" />
             </svg>
-            <span class="grid h-14 min-w-28 place-items-center rounded-2xl px-4 text-lg font-medium transition-all duration-500" :class="stage >= 2 ? 'bg-white text-ink-950 shadow-[0_10px_40px_-10px_rgb(251_146_60/0.8)]' : 'bg-white/[0.04] text-ink-500 ring-1 ring-white/10'">
+            <span class="grid h-14 min-w-28 place-items-center rounded-2xl px-4 text-lg font-medium transition-all duration-500" :class="stage >= 2 ? 'bg-white text-ink-950 shadow-[0_10px_40px_-10px_rgb(251_146_60/0.8)]' : 'bg-white/[0.04] text-ink-400 ring-1 ring-white/10'">
               {{ stage >= 2 ? (keymapPresets[selectedId]?.action ?? 'Choose…') : '?' }}
             </span>
           </div>

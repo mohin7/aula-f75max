@@ -63,7 +63,7 @@ const cloneCommand = `git clone ${links.github} && cd aula-f75max && make open`
 
         <ol class="mt-4 grid gap-px overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--line)] md:grid-cols-3">
           <li v-for="(step, i) in steps" :key="step.title" v-reveal="i * 70" class="flex gap-4 bg-ink-900 p-5 sm:p-6">
-            <span class="font-mono text-sm text-[rgb(var(--rgb-primary))]" aria-hidden="true">0{{ i + 1 }}</span>
+            <span class="font-mono text-sm text-accent" aria-hidden="true">0{{ i + 1 }}</span>
             <div>
               <h3 class="font-medium text-white"><span class="sr-only">Step {{ i + 1 }}: </span>{{ step.title }}</h3>
               <p class="mt-1.5 text-pretty text-sm leading-relaxed text-ink-300">{{ step.body }}</p>

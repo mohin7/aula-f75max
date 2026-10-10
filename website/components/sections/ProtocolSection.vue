@@ -80,22 +80,22 @@ const command = computed(() => `aulactl rgb ${current.value.mode} '${hex.value}'
         <div data-theme="dark" class="flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0b0c10] text-white shadow-[0_30px_80px_-40px_var(--shadow-soft)]">
           <div class="flex items-center justify-between border-b border-white/10 px-4 py-3">
             <span class="meta text-[11px]">~/aula-studio · aulactl</span>
-            <span class="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.14em] text-[rgb(var(--rgb-primary))]"><span class="size-1.5 animate-pulse rounded-full bg-[rgb(var(--rgb-primary))]" aria-hidden="true" />LIVE</span>
+            <span class="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.14em] text-accent"><span class="size-1.5 animate-pulse rounded-full bg-[rgb(var(--rgb-primary))]" aria-hidden="true" />LIVE</span>
           </div>
           <div class="flex-1 space-y-5 p-5 font-mono text-[13px] leading-6 sm:p-6" aria-live="polite">
             <div>
-              <p class="break-all"><span class="text-[rgb(var(--rgb-primary))]">$</span> {{ command }}</p>
-              <p class="text-emerald-400">✓ Lighting: {{ current.title }} {{ hex }} brightness {{ lighting.brightness }} speed {{ lighting.speed }}</p>
+              <p class="break-all"><span class="text-accent">$</span> {{ command }}</p>
+              <p class="text-ok">✓ Lighting: {{ current.title }} {{ hex }} brightness {{ lighting.brightness }} speed {{ lighting.speed }}</p>
             </div>
             <div>
-              <p><span class="text-[rgb(var(--rgb-primary))]">$</span> aulactl upload pixel-wave.gif fill</p>
+              <p><span class="text-accent">$</span> aulactl upload pixel-wave.gif fill</p>
               <p class="text-ink-400">251 frame(s), 2009 chunk(s)</p>
               <p class="text-ink-400">&nbsp;&nbsp;keyboard acknowledged 2009/2009 chunks</p>
-              <p class="text-emerald-400">✓ Uploaded pixel-wave.gif</p>
+              <p class="text-ok">✓ Uploaded pixel-wave.gif</p>
             </div>
             <div>
-              <p><span class="text-[rgb(var(--rgb-primary))]">$</span> aulactl settings --response 2 --sleep 2</p>
-              <p class="text-emerald-400">✓ Settings: response 2, sleep 5 min</p>
+              <p><span class="text-accent">$</span> aulactl settings --response 2 --sleep 2</p>
+              <p class="text-ok">✓ Settings: response 2, sleep 5 min</p>
             </div>
           </div>
           <div class="meta flex items-center justify-between border-t border-white/10 px-4 py-2.5 text-[11px]">

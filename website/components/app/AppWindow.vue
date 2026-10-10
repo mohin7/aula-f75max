@@ -63,9 +63,9 @@ function go(id: SectionId) {
               :tabindex="navigable ? 0 : -1"
               @click="go(item.id)"
             >
-              <svg viewBox="0 0 24 24" class="size-4 shrink-0" :class="item.id === section ? 'text-[rgb(var(--rgb-primary))]' : 'text-ink-400'" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path :d="item.icon" /></svg>
+              <svg viewBox="0 0 24 24" class="size-4 shrink-0" :class="item.id === section ? 'text-accent' : 'text-ink-400'" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path :d="item.icon" /></svg>
               <span class="flex-1 text-left">{{ item.title }}</span>
-              <span v-if="item.soon" class="rounded bg-amber-400/10 px-1.5 py-px text-[9px] font-semibold uppercase tracking-wider text-amber-300/90">Soon</span>
+              <span v-if="item.soon" class="rounded bg-amber-400/10 px-1.5 py-px text-[9px] font-semibold uppercase tracking-wider text-warn">Soon</span>
             </button>
           </li>
         </ul>
@@ -75,7 +75,7 @@ function go(id: SectionId) {
           </span>
           <span class="min-w-0">
             <span class="block truncate text-xs font-medium text-white">AULA F75 Max</span>
-            <span class="block text-[11px] text-emerald-400">Connected</span>
+            <span class="block text-[11px] text-ok">Connected</span>
           </span>
         </div>
       </nav>

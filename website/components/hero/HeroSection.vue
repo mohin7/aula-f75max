@@ -58,7 +58,7 @@ const callouts = [
     <div class="mx-auto flex max-w-4xl flex-col items-center text-center">
       <!-- Hook -->
       <a href="#features" class="animate-fade-up group inline-flex items-center gap-2 rounded-full bg-white/[0.05] py-1 pr-3 pl-1 text-[13px] text-ink-200 ring-1 ring-white/10 transition-colors [animation-delay:40ms] hover:bg-white/[0.09]">
-        <span class="rounded-full bg-[rgb(var(--rgb-primary))] px-2 py-0.5 text-[11px] font-semibold text-ink-950 transition-colors duration-700">Free</span>
+        <span class="rounded-full bg-accent-solid px-2 py-0.5 text-[11px] font-semibold text-ink-950 transition-colors duration-700">Free</span>
         No official Mac app? Now there is.
         <svg viewBox="0 0 16 16" class="size-3 text-ink-400 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 3l5 5-5 5" /></svg>
       </a>
@@ -135,7 +135,7 @@ const callouts = [
           :style="{ '--depth': callout.depth, animationDelay: `${i * -1.7}s` }"
           aria-hidden="true"
         >
-          <span class="grid size-9 place-items-center rounded-xl bg-[rgb(var(--rgb-primary)/0.16)] text-[rgb(var(--rgb-primary))] ring-1 ring-inset ring-[rgb(var(--rgb-primary)/0.35)] transition-colors duration-700">
+          <span class="grid size-9 place-items-center rounded-xl bg-[rgb(var(--rgb-primary)/0.16)] text-accent ring-1 ring-inset ring-[rgb(var(--rgb-primary)/0.35)] transition-colors duration-700">
             <svg viewBox="0 0 24 24" class="size-[18px]" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path :d="callout.icon" /></svg>
           </span>
           <span class="text-left">
@@ -169,7 +169,7 @@ const callouts = [
         <!-- The same facts, for narrow screens -->
         <ul class="flex flex-wrap justify-center gap-x-4 gap-y-2 text-[13px] text-ink-400 xl:hidden">
           <li v-for="callout in callouts" :key="callout.id" class="flex items-center gap-1.5">
-            <svg viewBox="0 0 24 24" class="size-3.5 text-[rgb(var(--rgb-primary))]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path :d="callout.icon" /></svg>
+            <svg viewBox="0 0 24 24" class="size-3.5 text-accent" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path :d="callout.icon" /></svg>
             {{ callout.title }}
           </li>
         </ul>

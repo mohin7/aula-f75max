@@ -16,7 +16,7 @@ withDefaults(defineProps<{
   <div class="flex flex-col gap-6" :class="align === 'center' ? 'items-center text-center' : 'lg:flex-row lg:items-end lg:justify-between lg:gap-12'">
     <div class="flex flex-col gap-4" :class="align === 'center' ? 'mx-auto max-w-3xl items-center' : 'max-w-2xl'">
       <div v-if="eyebrow || soon" class="flex flex-wrap items-center gap-2.5" :class="align === 'center' && 'justify-center'">
-        <p v-if="eyebrow" class="font-mono text-xs font-medium tracking-tight text-[rgb(var(--rgb-primary))]">{{ eyebrow }}</p>
+        <p v-if="eyebrow" class="font-mono text-xs font-medium tracking-tight text-accent">{{ eyebrow }}</p>
         <UiBadge v-if="soon" tone="soon">Coming soon · Preview</UiBadge>
       </div>
       <h2 :id="id" class="text-balance text-[2rem] leading-[1.08] font-semibold tracking-[-0.03em] whitespace-pre-line text-white sm:text-[2.6rem]">

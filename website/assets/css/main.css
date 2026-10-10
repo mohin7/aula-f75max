@@ -78,7 +78,7 @@
   --color-ink-700: #e7eaef;
   --color-ink-600: #d9dde4;
   --color-ink-500: #8d94a0;
-  --color-ink-400: #6b727e;
+  --color-ink-400: #5f6673;
   --color-ink-300: #4f5663;
   --color-ink-200: #2d333d;
   --color-ink-100: #1b1f27;
@@ -218,3 +218,25 @@ html.theme-fade, html.theme-fade * {
     transition-duration: 0.001ms !important;
   }
 }
+
+/*
+ * Colored text that stays readable on both themes. Accent text is lightened on dark and darkened on light;
+ * "ok" and "warn" are status greens and ambers. Anything inside data-theme="dark" keeps the dark values.
+ */
+.text-accent { color: color-mix(in srgb, rgb(var(--rgb-primary)) 78%, #fff); }
+.text-ok { color: #34d399; }
+.text-warn { color: #fcd34d; }
+.bg-accent-solid { background-color: rgb(var(--rgb-primary)); }
+[data-theme="light"] .text-accent { color: color-mix(in srgb, rgb(var(--rgb-primary)) 58%, #000); }
+[data-theme="light"] .text-ok { color: #047857; }
+[data-theme="light"] .text-warn { color: #92400e; }
+[data-theme="light"] .bg-accent-solid { background-color: color-mix(in srgb, rgb(var(--rgb-primary)) 80%, #000); }
+[data-theme="light"] [data-theme="dark"] .text-accent { color: color-mix(in srgb, rgb(var(--rgb-primary)) 78%, #fff); }
+[data-theme="light"] [data-theme="dark"] .text-ok { color: #34d399; }
+[data-theme="light"] [data-theme="dark"] .text-warn { color: #fcd34d; }
+
+/* Segmented control in the recreated app window. */
+.seg-track { background-color: rgb(0 0 0 / 0.3); }
+.seg-on { background-color: rgb(255 255 255 / 0.14); box-shadow: 0 1px 2px rgb(0 0 0 / 0.4), inset 0 1px 0 rgb(255 255 255 / 0.08); }
+[data-theme="light"] .seg-track { background-color: rgb(15 23 42 / 0.07); }
+[data-theme="light"] .seg-on { background-color: #fff; box-shadow: 0 1px 2px rgb(15 23 42 / 0.18); }

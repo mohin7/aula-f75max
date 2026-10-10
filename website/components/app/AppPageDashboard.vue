@@ -35,14 +35,14 @@ const stats = computed(() => [
           <div>
             <p class="text-[11px] text-ink-400">Battery</p>
             <p class="text-sm font-semibold text-white tabular-nums">{{ battery }}%</p>
-            <p class="text-[11px] text-emerald-400">Charging over USB-C</p>
+            <p class="text-[11px] text-ok">Charging over USB-C</p>
           </div>
         </div>
       </template>
     </AppPageHeader>
 
     <div class="-mt-3 flex flex-wrap gap-2 text-[11px]">
-      <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-400/10 px-2 py-0.5 text-emerald-300"><span class="size-1.5 rounded-full bg-emerald-400" aria-hidden="true" />Connected · USB-C</span>
+      <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-400/10 px-2 py-0.5 text-ok"><span class="size-1.5 rounded-full bg-emerald-400" aria-hidden="true" />Connected · USB-C</span>
     </div>
 
     <div :class="appCard" class="p-3 @md:p-5">

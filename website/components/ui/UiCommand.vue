@@ -3,15 +3,14 @@ import { useClipboard } from '@vueuse/core'
 
 /** A terminal command in a pill, with a copy button. */
 const props = defineProps<{ command: string; label?: string }>()
-const { copy, copied, isSupported } = useClipboard({ copiedDuring: 1600 })
+const { copy, copied } = useClipboard({ copiedDuring: 1600 })
 </script>
 
 <template>
   <div class="flex min-w-0 items-center gap-2 rounded-[10px] border border-[var(--line-strong)] bg-ink-850 py-1.5 pr-1.5 pl-3.5 font-mono text-[13px] text-ink-100">
-    <span class="select-none text-[rgb(var(--rgb-primary))]" aria-hidden="true">$</span>
+    <span class="select-none text-accent" aria-hidden="true">$</span>
     <code class="min-w-0 flex-1 overflow-x-auto whitespace-nowrap [scrollbar-width:none]" :aria-label="label">{{ command }}</code>
     <button
-      v-if="isSupported"
       type="button"
       class="grid size-8 shrink-0 place-items-center rounded-md text-ink-400 transition-colors hover:bg-white/[0.07] hover:text-white"
       :aria-label="copied ? 'Copied' : 'Copy command'"
