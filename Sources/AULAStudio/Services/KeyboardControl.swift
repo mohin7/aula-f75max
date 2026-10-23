@@ -159,6 +159,10 @@ final class KeyboardControl {
             lightingStatus = .idle
             settingsStatus = .idle
             clockStatus = .idle
+            if upload != nil {
+                upload = nil
+                uploadStatus = .failed("Keyboard disconnected during upload.")
+            }
         }
     }
 
