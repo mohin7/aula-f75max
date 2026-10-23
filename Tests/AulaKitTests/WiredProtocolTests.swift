@@ -141,6 +141,32 @@ struct DeviceFeatureTests {
         let fill = DisplayEncoder.drawRect(imageWidth: 256, imageHeight: 128, fit: .fill)
         #expect(fill.height == 128 && fill.width == 256)
     }
+
+    @Test func downsamplesWhenSourceExceedsMaxFrames() throws {
+        let context = try #require(CGContext(
+            data: nil, width: 4, height: 4, bitsPerComponent: 8, bytesPerRow: 16,
+            space: CGColorSpace(name: CGColorSpace.sRGB)!, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+        ))
+        let cgImage = try #require(context.makeImage())
+        let gifData = NSMutableData()
+        let frameCount = 300
+        let destination = try #require(CGImageDestinationCreateWithData(
+            gifData, "com.compuserve.gif" as CFString, frameCount, nil
+        ))
+        let frameProperties: [CFString: Any] = [
+            kCGImagePropertyGIFDictionary: [
+                kCGImagePropertyGIFDelayTime: 0.05
+            ]
+        ]
+        for _ in 0..<frameCount {
+            CGImageDestinationAddImage(destination, cgImage, frameProperties as CFDictionary)
+        }
+        #expect(CGImageDestinationFinalize(destination))
+
+        let frames = try DisplayEncoder.frames(from: gifData as Data, fit: .fit)
+        #expect(frames.count == DisplayEncoder.maxFrames)
+        #expect(frames.allSatisfy { $0.delayMilliseconds >= 50 })
+    }
 }
 
 @Suite("12-hour clock")

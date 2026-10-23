@@ -53,16 +53,30 @@ public enum DisplayEncoder {
     }
 
     /// Decodes up to 255 frames and fits them to the screen.
+    /// If the source has more than 255 frames, it samples them uniformly and accumulates delays
+    /// so the entire animation plays through within the hardware frame limit.
     public static func frames(from data: Data, fit: FitMode) throws -> [Frame] {
         guard let source = CGImageSourceCreateWithData(data as CFData, nil) else { throw EncoderError.unreadable }
-        let count = min(CGImageSourceGetCount(source), maxFrames)
-        guard count > 0 else { throw EncoderError.noFrames }
+        let totalCount = CGImageSourceGetCount(source)
+        guard totalCount > 0 else { throw EncoderError.noFrames }
+
+        let targetCount = min(totalCount, maxFrames)
+        var sampledIndices = Set<Int>()
+        if totalCount <= maxFrames {
+            sampledIndices = Set(0..<totalCount)
+        } else {
+            for i in 0..<targetCount {
+                let sampleIndex = Int((Double(i) * Double(totalCount - 1) / Double(targetCount - 1)).rounded())
+                sampledIndices.insert(sampleIndex)
+            }
+        }
 
         var frames: [Frame] = []
-        frames.reserveCapacity(count)
+        frames.reserveCapacity(targetCount)
         // Animated images draw each frame over the previous one.
         let canvas = makeContext()
-        for index in 0..<count {
+        var accumulatedDelay = 0
+        for index in 0..<totalCount {
             guard let image = CGImageSourceCreateImageAtIndex(source, index, nil), let canvas else { continue }
             if index == 0 {
                 canvas.setFillColor(CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1))
@@ -70,8 +84,13 @@ public enum DisplayEncoder {
             }
             canvas.interpolationQuality = .high
             canvas.draw(image, in: drawRect(imageWidth: image.width, imageHeight: image.height, fit: fit))
-            guard let rendered = canvas.makeImage() else { continue }
-            frames.append(Frame(image: rendered, delayMilliseconds: delay(source: source, index: index)))
+            accumulatedDelay += delay(source: source, index: index)
+
+            if sampledIndices.contains(index) {
+                guard let rendered = canvas.makeImage() else { continue }
+                frames.append(Frame(image: rendered, delayMilliseconds: accumulatedDelay))
+                accumulatedDelay = 0
+            }
         }
         guard !frames.isEmpty else { throw EncoderError.unreadable }
         return frames

@@ -99,28 +99,36 @@ public actor WiredKeyboardDriver {
             IOHIDDeviceClose(raw, IOOptionBits(kIOHIDOptionsTypeNone))
         }
 
-        try await run(AulaWiredProtocol.displayUploadBegin(slot: slot, chunkCount: chunkCount))
-        _ = await acks.waitForNext(after: acks.count, timeout: .milliseconds(150))
-
+        var uploadStarted = false
         var acknowledged = 0
         let bytes = [UInt8](stream)
-        for index in 0..<chunkCount {
-            let chunk = Array(bytes[(index * DisplayEncoder.chunkLength)..<((index + 1) * DisplayEncoder.chunkLength)])
-            let before = acks.count
-            do {
-                try setReport(raw, kIOHIDReportTypeOutput, chunk)
-            } catch {
-                close()
-                throw error
-            }
-            if await acks.waitForNext(after: before, timeout: .milliseconds(400)) {
-                acknowledged += 1
-            }
-            progress(UploadProgress(sentChunks: index + 1, totalChunks: chunkCount))
-        }
 
-        try await run(AulaWiredProtocol.displayUploadFinish)
-        return acknowledged
+        do {
+            try await run(AulaWiredProtocol.displayUploadBegin(slot: slot, chunkCount: chunkCount))
+            uploadStarted = true
+            _ = await acks.waitForNext(after: acks.count, timeout: .milliseconds(150))
+
+            for index in 0..<chunkCount {
+                try Task.checkCancellation()
+                let chunk = Array(bytes[(index * DisplayEncoder.chunkLength)..<((index + 1) * DisplayEncoder.chunkLength)])
+                let before = acks.count
+                try setReport(raw, kIOHIDReportTypeOutput, chunk)
+                if await acks.waitForNext(after: before, timeout: .milliseconds(400)) {
+                    acknowledged += 1
+                }
+                progress(UploadProgress(sentChunks: index + 1, totalChunks: chunkCount))
+            }
+
+            try await run(AulaWiredProtocol.displayUploadFinish)
+            return acknowledged
+        } catch {
+            if uploadStarted {
+                // Best-effort cleanup so the keyboard doesn't hang in display receive mode.
+                try? await run(AulaWiredProtocol.displayUploadFinish)
+            }
+            close()
+            throw error
+        }
     }
 
     /// Protocol research only: sends an arbitrary sequence. Feature code uses typed commands.

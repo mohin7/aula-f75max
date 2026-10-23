@@ -169,7 +169,7 @@ struct DisplayView: View {
 
     private var frameSummary: String {
         if sourceFrameCount > DisplayEncoder.maxFrames {
-            return "\(frames.count) (first \(DisplayEncoder.maxFrames) of \(sourceFrameCount))"
+            return "\(frames.count) (sampled from \(sourceFrameCount))"
         }
         return "\(frames.count)"
     }
