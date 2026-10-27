@@ -1,11 +1,8 @@
 <script setup lang="ts">
-const links = useSiteLinks()
+import { installSteps } from '~/data/content'
 
-const steps = [
-  { title: 'Download', body: 'Click the button. AULA Studio downloads as a small disk image.' },
-  { title: 'Drag to Applications', body: 'Open the downloaded file and drag AULA Studio into the Applications folder.' },
-  { title: 'Allow it once', body: 'The first time, open System Settings → Privacy & Security and click Open Anyway.' },
-]
+const links = useSiteLinks()
+const asset = useAsset()
 
 const cloneCommand = `git clone ${links.github} && cd aula-f75max && make open`
 </script>
@@ -29,7 +26,7 @@ const cloneCommand = `git clone ${links.github} && cd aula-f75max && make open`
           <!-- Download -->
           <div class="flex flex-col items-start gap-6 bg-ink-900 p-6 sm:p-8">
             <div class="flex items-center gap-4">
-              <NuxtImg src="/images/app-icon-512.png" alt="" width="112" height="112" sizes="64px" densities="x1 x2" loading="lazy" class="size-16 drop-shadow-[0_14px_28px_rgb(var(--rgb-primary)/0.4)]" />
+              <img :src="asset('/images/app-icon.webp')" alt="" width="64" height="64" loading="lazy" decoding="async" class="size-16 drop-shadow-[0_14px_28px_rgb(var(--rgb-primary)/0.4)]">
               <div>
                 <p class="text-lg font-semibold tracking-tight text-white">AULA Studio for Mac</p>
                 <p class="meta mt-0.5">Free · open source · MIT</p>
@@ -42,6 +39,7 @@ const cloneCommand = `git clone ${links.github} && cd aula-f75max && make open`
             <p class="max-w-md text-pretty text-sm leading-relaxed text-ink-300">
               AULA Studio isn’t notarized by Apple yet, so macOS asks you to confirm the first time (step 3). It never changes your keyboard’s firmware.
             </p>
+            <NuxtLink to="/download/" class="text-sm font-medium text-white underline underline-offset-4">System requirements and download FAQ</NuxtLink>
           </div>
 
           <!-- From source -->
@@ -62,7 +60,7 @@ const cloneCommand = `git clone ${links.github} && cd aula-f75max && make open`
         </div>
 
         <ol class="mt-4 grid gap-px overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--line)] md:grid-cols-3">
-          <li v-for="(step, i) in steps" :key="step.title" v-reveal="i * 70" class="flex gap-4 bg-ink-900 p-5 sm:p-6">
+          <li v-for="(step, i) in installSteps" :key="step.title" v-reveal="i * 70" class="flex gap-4 bg-ink-900 p-5 sm:p-6">
             <span class="font-mono text-sm text-accent" aria-hidden="true">0{{ i + 1 }}</span>
             <div>
               <h3 class="font-medium text-white"><span class="sr-only">Step {{ i + 1 }}: </span>{{ step.title }}</h3>
