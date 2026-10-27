@@ -1,24 +1,27 @@
 <script setup lang="ts">
+import { guides } from '~/data/guides'
 import { site } from '~/data/site'
 
 const links = useSiteLinks()
 
+// Full paths, so the section links also work from the guide and download pages.
 const columns = [
   { title: 'Product', items: [
-    { label: 'Features', href: '#features' },
-    { label: 'Privacy', href: '#privacy' },
-    { label: 'Coming soon', href: '#keymap' },
-    { label: 'FAQ', href: '#faq' },
-    { label: 'Download', href: '#download' },
+    { label: 'Features', href: '/#features' },
+    { label: 'Privacy', href: '/#privacy' },
+    { label: 'Coming soon', href: '/#keymap' },
+    { label: 'FAQ', href: '/#faq' },
+    { label: 'Download for Mac', href: '/download/' },
+  ] },
+  { title: 'Guides', items: [
+    { label: 'All guides', href: '/guides/' },
+    ...guides.map((g) => ({ label: g.shortTitle, href: `/guides/${g.slug}/` })),
   ] },
   { title: 'Project', items: [
     { label: 'GitHub', href: links.github, external: true },
-    { label: 'Documentation', href: links.repo('readme'), external: true },
     { label: 'Roadmap', href: links.repo('roadmap'), external: true },
     { label: 'Contribute', href: links.repo('contributing'), external: true },
     { label: 'Protocol notes', href: links.repo('protocol'), external: true },
-  ] },
-  { title: 'Support', items: [
     { label: 'Report an issue', href: links.repo('issues'), external: true },
     { label: 'Security', href: links.repo('security'), external: true },
     { label: 'License (MIT)', href: links.repo('license'), external: true },
@@ -44,11 +47,13 @@ const columns = [
         <ul class="mt-4 flex flex-col gap-3">
           <li v-for="item in column.items" :key="item.label">
             <a
+              v-if="'external' in item && item.external"
               :href="item.href"
-              :target="'external' in item && item.external ? '_blank' : undefined"
-              :rel="'external' in item && item.external ? 'noopener noreferrer' : undefined"
+              target="_blank"
+              rel="noopener noreferrer"
               class="text-sm text-ink-400 transition-colors hover:text-white"
             >{{ item.label }}</a>
+            <NuxtLink v-else :to="item.href" class="text-sm text-ink-400 transition-colors hover:text-white">{{ item.label }}</NuxtLink>
           </li>
         </ul>
       </nav>

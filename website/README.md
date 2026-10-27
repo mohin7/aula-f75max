@@ -1,10 +1,10 @@
 # AULA Studio website
 
-The product site for AULA Studio. It's built with Nuxt 3, Vue 3, TypeScript, Tailwind CSS v4, VueUse and Nuxt Image, and generated as a static site.
+The product site for AULA Studio. It's built with Nuxt 3, Vue 3, TypeScript, Tailwind CSS v4 and VueUse, and generated as a static site.
 
 ## Develop
 
-The project uses pnpm. The esbuild and sharp build scripts are approved in `pnpm-workspace.yaml`.
+The project uses pnpm. The esbuild build script is approved in `pnpm-workspace.yaml`.
 
 ```sh
 pnpm install
@@ -54,20 +54,29 @@ Everything that changes between releases lives in `runtimeConfig.public` in `nux
 ## Structure
 
 ```
-data/          Content and facts: features, FAQ, app labels, keyboard layout, lighting colors
+pages/         Home (index.vue), /download/, /guides/ and /guides/<slug>/
+data/          Content and facts: features, FAQ, guides, app labels, keyboard layout, lighting colors
+               pages.ts lists every indexable page with its last-updated date (sitemap and prerender)
 composables/   Motion, keyboard lighting, live key mirroring, app window state, links
 components/
   ui/          Buttons, badges, headings, choice pills, accordion, download button
   keyboard/    Keyboard visual with CSS-only lighting, key inspector, knob
   app/         Interactive recreation of the AULA Studio window and its pages
   layout/      Header, footer, logo
+  page/        Page intro with breadcrumbs, guide cards, download card (download and guide pages)
   hero/        Hero with the live keyboard
   sections/    Features (app window), key mapping, macros, profiles, knob, built for Mac,
                how it works, download, contribute, documentation, FAQ
 plugins/       v-reveal (one shared IntersectionObserver)
 scripts/       sync-dmg.mjs copies ../dist/AULA-Studio.dmg into public/downloads
+composables/usePageSeo.ts  Title, description, canonical, Open Graph and JSON-LD for each page
 server/routes/ sitemap.xml and robots.txt (prerendered)
+public/_headers  Response headers (HSTS) for Cloudflare static assets
 ```
+
+## Adding a guide
+
+Add an entry to `data/guides.ts`. It's prerendered, added to the sitemap and linked from the footer, the guides page and the home page automatically. Set `updated` to the date the content changed; it becomes the sitemap `lastmod`. Bump the dates in `data/pages.ts` when the home or download page changes.
 
 ## Honesty rules
 
@@ -76,4 +85,5 @@ This site describes a real app, so keep it true:
 - A feature is marked `available` in `data/features.ts` only if the shipping app has it.
 - Key mapping, macros, profiles and custom knob actions are labeled **Coming soon · Preview**, and their demos say they don't change a real keyboard.
 - The recreated app window (`components/app/`) must use the app's real labels and options, and stays labeled as a recreation that doesn't connect to a keyboard.
+- Guides describe only what the shipping app does today. Don't write guides for key mapping or macros until they ship.
 - Don't add performance numbers, download counts, GitHub stats, testimonials or compatibility claims that haven't been verified.

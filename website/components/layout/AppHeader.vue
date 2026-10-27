@@ -8,12 +8,14 @@ const isLocked = useScrollLock(import.meta.client ? document.body : null)
 watch(open, (value) => (isLocked.value = value))
 onKeyStroke('Escape', () => (open.value = false))
 
+// Full paths, so the section links also work from the guide and download pages.
 const nav = [
-  { label: 'Features', href: '#features' },
-  { label: 'Under the hood', href: '#protocol' },
-  { label: 'Privacy', href: '#privacy' },
-  { label: 'Coming soon', href: '#keymap' },
-  { label: 'FAQ', href: '#faq' },
+  { label: 'Features', href: '/#features' },
+  { label: 'Guides', href: '/guides/' },
+  { label: 'Under the hood', href: '/#protocol' },
+  { label: 'Privacy', href: '/#privacy' },
+  { label: 'Coming soon', href: '/#keymap' },
+  { label: 'FAQ', href: '/#faq' },
 ]
 </script>
 
@@ -26,10 +28,10 @@ const nav = [
     >
       <div class="mx-auto flex h-14 max-w-[78rem] items-center justify-between gap-6 px-4 sm:px-6">
         <div class="flex items-center gap-8">
-          <a href="#top" aria-label="AULA Studio home"><AppLogo /></a>
+          <NuxtLink to="/#top" aria-label="AULA Studio home"><AppLogo /></NuxtLink>
           <ul class="hidden items-center lg:flex">
             <li v-for="item in nav" :key="item.href">
-              <a :href="item.href" class="whitespace-nowrap rounded-lg px-3 py-2 text-sm text-ink-300 transition-colors hover:text-white">{{ item.label }}</a>
+              <NuxtLink :to="item.href" class="whitespace-nowrap rounded-lg px-3 py-2 text-sm text-ink-300 transition-colors hover:text-white">{{ item.label }}</NuxtLink>
             </li>
           </ul>
         </div>
@@ -67,10 +69,10 @@ const nav = [
       <div v-if="open" id="mobile-menu" class="fixed inset-0 top-0 z-[-1] bg-ink-950/95 px-6 pt-24 backdrop-blur-xl lg:hidden">
         <ul class="flex flex-col">
           <li v-for="item in nav" :key="item.href" class="border-b border-[var(--line)]">
-            <a :href="item.href" class="flex items-center justify-between py-4 text-2xl font-semibold tracking-tight text-white" @click="open = false">
+            <NuxtLink :to="item.href" class="flex items-center justify-between py-4 text-2xl font-semibold tracking-tight text-white" @click="open = false">
               {{ item.label }}
               <svg viewBox="0 0 16 16" class="size-4 text-ink-400" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 3l5 5-5 5" /></svg>
-            </a>
+            </NuxtLink>
           </li>
         </ul>
         <DownloadButton class="mt-10 w-full" />

@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from 'node:fs'
 import tailwindcss from '@tailwindcss/vite'
+import { sitePages } from './data/pages'
 
 // GitHub Pages serves the site from /aula-f75max/. Set NUXT_APP_BASE_URL when building for it.
 const baseURL = process.env.NUXT_APP_BASE_URL || '/'
@@ -18,7 +19,7 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   telemetry: false,
 
-  modules: ['@nuxt/image', '@vueuse/nuxt'],
+  modules: ['@vueuse/nuxt'],
 
   css: ['~/assets/css/main.css'],
 
@@ -45,6 +46,7 @@ export default defineNuxtConfig({
         innerHTML: "try{var t=localStorage.getItem('aula-theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=t}catch(e){}",
       }],
       link: [
+        { rel: 'icon', href: `${baseURL}favicon.ico`, sizes: '32x32' },
         { rel: 'icon', type: 'image/svg+xml', href: `${baseURL}favicon.svg` },
         { rel: 'icon', type: 'image/png', sizes: '48x48', href: `${baseURL}favicon-48.png` },
         { rel: 'apple-touch-icon', href: `${baseURL}apple-touch-icon.png` },
@@ -65,15 +67,9 @@ export default defineNuxtConfig({
     },
   },
 
-  image: {
-    format: ['avif', 'webp'],
-    quality: 82,
-    screens: { xs: 390, sm: 640, md: 768, lg: 1024, xl: 1280, xxl: 1536, '2xl': 1920 },
-  },
-
   nitro: {
     prerender: {
-      routes: ['/', '/sitemap.xml', '/robots.txt'],
+      routes: [...sitePages.map((page) => page.path), '/sitemap.xml', '/robots.txt'],
       crawlLinks: false,
     },
   },
@@ -82,8 +78,9 @@ export default defineNuxtConfig({
     payloadExtraction: false,
   },
 
+  // One cached stylesheet for every page instead of ~75 KB of CSS inlined into each HTML file.
   features: {
-    inlineStyles: true,
+    inlineStyles: false,
   },
 
   typescript: {
