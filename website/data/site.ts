@@ -2,9 +2,9 @@
 export const site = {
   name: 'AULA Studio',
   tagline: 'Your keyboard. Your way.',
-  title: 'AULA Studio: Native macOS App for the AULA F75 Max Keyboard',
+  title: 'AULA F75 Max Software for Mac: Free Download | AULA Studio',
   description:
-    'Free, open-source macOS app for the AULA F75 Max. Change lighting, put GIFs on the screen, sync the clock and tune settings. No drivers needed.',
+    'Free, open-source AULA F75 Max software for Mac. Change the RGB lighting, put GIFs on the screen, sync the clock and tune key settings. No driver needed.',
   keyboard: 'AULA F75 Max',
   requirements: 'macOS 15 or later',
   architectures: 'Apple silicon and Intel',

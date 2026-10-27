@@ -41,10 +41,19 @@ export const knobModes = [
   { id: 'timeline', name: 'Timeline', unit: 's', min: 0, max: 120, start: 18, available: false },
 ] as const
 
-export const docs = [
-  { title: 'Getting started', body: 'Install, connect your keyboard and build from source.', path: 'readme' },
-  { title: 'Lighting & display', body: 'What each feature does and which connection it needs.', path: 'readme' },
-  { title: 'Protocol notes', body: 'Verified USB-C and Bluetooth details for the F75 Max.', path: 'protocol' },
-  { title: 'Roadmap', body: 'What’s built, what’s next: key mapping, macros, profiles.', path: 'roadmap' },
-  { title: 'Security & privacy', body: 'What the app does and doesn’t do, and how to report issues.', path: 'security' },
+/** Install steps, shown on the home page and the download page. */
+export const installSteps = [
+  { title: 'Download', body: 'Click the button. AULA Studio downloads as a small disk image.' },
+  { title: 'Drag to Applications', body: 'Open the downloaded file and drag AULA Studio into the Applications folder.' },
+  { title: 'Allow it once', body: 'The first time, open System Settings → Privacy & Security and click Open Anyway.' },
+] as const
+
+/** FAQ on the download page, also published as FAQPage structured data. Keep answers factual. */
+export const downloadFaqs = [
+  { q: 'Is there an official AULA F75 Max driver for Mac?', a: 'AULA doesn’t make software for Mac; its F75 Max software is for Windows. AULA Studio is an independent, free alternative made for macOS. It isn’t affiliated with AULA or Epomaker.' },
+  { q: 'Do I need to install a driver?', a: 'No. macOS already sees the F75 Max as a keyboard. AULA Studio talks to it through Apple’s own IOKit and CoreBluetooth frameworks, with no kernel extension or driver.' },
+  { q: 'Can I remap keys or record macros?', a: 'Not yet. Key mapping, macros and profiles are planned for future versions.' },
+  { q: 'Does it work with other AULA keyboards?', a: 'Only the AULA F75 Max is supported today. It was tested on an F75 Max with its 2024 firmware. Support for other AULA models is being explored.' },
+  { q: 'Will it change my keyboard’s firmware?', a: 'No. AULA Studio reads the firmware version but never flashes firmware. Every command it sends only changes settings you can change back.' },
+  { q: 'Is it safe to download?', a: 'The app is open source under the MIT License, so anyone can read the code. It has no network access and never records what you type. It isn’t notarized by Apple yet, which is why macOS asks you to confirm the first time.' },
 ] as const
